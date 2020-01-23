@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>cloudImage</class>
+ <widget class="QWidget" name="cloudImage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Cloud Image</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>10</y>
+     <width>211</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#f1d1d6;&quot;&gt;Clouds Images&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>100</y>
+     <width>961</width>
+     <height>601</height>
+    </rect>
+   </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>119</number>
+   </attribute>
+   <column>
+    <property name="text">
+     <string>Cloud name</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Action</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Date creation</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>minimum CPU</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string> minimum RAM</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>minimum disk</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>minimum core</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Bound width</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="back">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>720</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton
+{
+	background-color: #f1d1d6;
+	color: #828282;
+	border-radius:20px;
+}
+
+QPushButton:hover
+{
+	background-color: #ff8b8d;
+	color: #656565;
+	border-radius:20px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Back</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="create">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>20</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton
+{
+	background-color: #f1d1d6;
+	color: #828282;
+	border-radius:20px;
+}
+
+QPushButton:hover
+{
+	background-color: #ff8b8d;
+	color: #656565;
+	border-radius:20px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Create Image</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
