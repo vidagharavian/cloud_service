@@ -14,6 +14,7 @@ def sign_up(first_name: str, last_name: str, national_num: int, email, password:
     insertion_sql = 'INSERT INTO "%s" (name, f_name, email, hashd_password,national_num)VALUES (%s,%s,%s,%s, %s);'
     cur.execute(insertion_sql, (AsIs(UserTable), first_name, last_name, email, hashed_password, national_num))
     conn.commit()
+    return sign_in(email=email,password=password)
 
 
 def sign_in(email: str, password: str) -> dict:
