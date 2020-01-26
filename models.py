@@ -7,27 +7,42 @@ from data_base_connection import cur, conn
 
 class Model:
     @staticmethod
-    def get_attribute(model_name: str, schema: str = 'public'):
-        get_model_attribute_query = "SELECT *  FROM information_schema.columns WHERE table_schema = %s AND table_name   = %s;"
+    def get_attribute(model_name: str, schema: str = 'public', is_view=False):
+        if not is_view:
+            get_model_attribute_query = "SELECT *  FROM information_schema.columns WHERE table_schema = %s AND table_name   = %s;"
+        else:
+            get_model_attribute_query = "SELECT *  FROM information_schema.columns WHERE table_schema = %s AND view_name   = %s;"
         cur.execute(get_model_attribute_query, (schema, model_name))
         rows = cur.fetchall()
         attributes = {}
+        counter = 1
         for row in rows:
-            attributes[row[3]] = row[4]
+            attributes[row[3]] = counter
+            counter = counter + 1
         return attributes
 
     @classmethod
     def select_query(cls, model_name: str = None, schema_name: str = 'public',
-                     out_put_array: List[str] = None, condition=None):
+                     out_put_array: List[str] = None, condition=None, is_view=False):
 
         if model_name is not None:
-            query = 'select * from %s."%s"'
+            if not is_view:
+                query = 'select * from %s."%s"'
+            else:
+                query = 'select * from %s.%s '
             if condition is not None:
                 query = query + condition
             cur.execute(query, (AsIs(schema_name), AsIs(model_name)))
             rows = cur.fetchall()
-            if out_put_array is not None:
+            if not is_view:
                 attributes = cls.get_attribute(model_name, schema_name)
+            else:
+                attributes = {}
+                count = 1
+                for output in out_put_array:
+                    attributes[output] = count
+                    count += 1
+            if out_put_array is not None:
                 get_list = {}
                 for out_put in out_put_array:
                     try:
@@ -39,6 +54,14 @@ class Model:
                 for row in rows:
                     executed_output = {}
                     for key, value in get_list.items():
+                        executed_output[key] = row[int(value) - 1]
+                    executed_outputs.append(executed_output)
+                return executed_outputs
+            else:
+                executed_outputs = []
+                for row in rows:
+                    executed_output = {}
+                    for key, value in attributes.items():
                         executed_output[key] = row[int(value) - 1]
                     executed_outputs.append(executed_output)
                 return executed_outputs
@@ -84,13 +107,13 @@ class Model:
                 query = query + condition
             cur.execute(query, (AsIs(schema_name), AsIs(model_name)))
             conn.commit()
-    @classmethod
-    def delete_query(cls,model_name:str,condition:str,schema_name: str = 'public'):
-        if model_name is not None:
-            query='delete from %s."%s"'+condition
-            cur.execute(query,(AsIs(schema_name),AsIs(model_name)))
-            conn.commit()
 
+    @classmethod
+    def delete_query(cls, model_name: str, condition: str, schema_name: str = 'public'):
+        if model_name is not None:
+            query = 'delete from %s."%s"' + condition
+            cur.execute(query, (AsIs(schema_name), AsIs(model_name)))
+            conn.commit()
 
 # rows = Model.select_query(model_name='Customer', out_put_array=['id', 'name', 'f_name'])
 # for row in rows:

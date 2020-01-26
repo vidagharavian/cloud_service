@@ -198,7 +198,7 @@ QPushButton:hover
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#828282;&quot;&gt;Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="te_password_2">
+   <widget class="QTextEdit" name="te_username">
     <property name="geometry">
      <rect>
       <x>390</x>

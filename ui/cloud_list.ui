@@ -34,7 +34,7 @@
     </font>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#828282;&quot;&gt;Clouds List&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; color:#f5c6cf;&quot;&gt;Clouds List&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -51,7 +51,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -84,7 +84,7 @@ QPushButton:hover
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -109,11 +109,17 @@ QPushButton:hover
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>80</y>
+     <x>150</x>
+     <y>70</y>
      <width>721</width>
      <height>601</height>
     </rect>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::SingleSelection</enum>
+   </property>
+   <property name="selectionBehavior">
+    <enum>QAbstractItemView::SelectRows</enum>
    </property>
    <attribute name="horizontalHeaderDefaultSectionSize">
     <number>180</number>
@@ -138,6 +144,82 @@ QPushButton:hover
      <string>Date</string>
     </property>
    </column>
+   <column>
+    <property name="text">
+     <string>User id</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Cloud id</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="edit">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>700</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton
+{
+	background-color: #f1d1d6;
+	color: #828282;
+	border-radius:20px;
+}
+
+QPushButton:hover
+{
+	background-color: #ff8b8d;
+	color: #656565;
+	border-radius:20px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Edit Cloud</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="delete_2">
+   <property name="geometry">
+    <rect>
+     <x>680</x>
+     <y>700</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton
+{
+	background-color: #f1d1d6;
+	color: #828282;
+	border-radius:20px;
+}
+
+QPushButton:hover
+{
+	background-color: #ff8b8d;
+	color: #656565;
+	border-radius:20px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Delete Cloud</string>
+   </property>
   </widget>
  </widget>
  <resources/>

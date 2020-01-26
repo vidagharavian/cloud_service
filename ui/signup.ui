@@ -265,8 +265,8 @@ border-color: rgb(130, 130, 130);
    <widget class="QPushButton" name="pb_signup">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>670</y>
+      <x>540</x>
+      <y>660</y>
       <width>131</width>
       <height>61</height>
      </rect>
@@ -300,8 +300,8 @@ QPushButton:hover
    <widget class="QPushButton" name="pb_back">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>670</y>
+      <x>280</x>
+      <y>660</y>
       <width>131</width>
       <height>61</height>
      </rect>

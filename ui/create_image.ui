@@ -79,7 +79,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#828282;&quot;&gt;Select Cloud&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTextEdit" name="image_name">
    <property name="geometry">
     <rect>
      <x>480</x>
@@ -100,7 +100,7 @@ border-color: rgb(130, 130, 130);
 border-radius: 12px;</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="select_cloud">
    <property name="geometry">
     <rect>
      <x>480</x>
@@ -120,7 +120,7 @@ border:2px outset;
 border-color: rgb(130, 130, 130);</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="take">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -155,7 +155,7 @@ QPushButton:hover
     <string>Take Image</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="back">
    <property name="geometry">
     <rect>
      <x>270</x>
