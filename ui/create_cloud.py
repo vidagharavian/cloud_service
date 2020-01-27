@@ -72,12 +72,12 @@ class CreateCloudUi(QtWidgets.QMainWindow):
             items = get_os_versions(int(data[0]))
             for item in items:
                 self.os_ver.addItem(item['number'], [str(item['id'])])
-        os = get_os(int(data[0]))[0]
-        self.cpu.setMinimum(os['base_CPU'])
-        self.core.setMinimum(os['base_CORE'])
-        self.ram.setMinimum(os['base_RAM'])
-        self.disk.setMinimum(os['base_disk'])
-        self.bandwidth.setMinimum(os['base_band_width'])
+            os = get_os(int(data[0]))[0]
+            self.cpu.setMinimum(os['base_CPU'])
+            self.core.setMinimum(os['base_CORE'])
+            self.ram.setMinimum(os['base_RAM'])
+            self.disk.setMinimum(os['base_disk'])
+            self.bandwidth.setMinimum(os['base_band_width'])
 
 
     def calculateButtonPressed(self):

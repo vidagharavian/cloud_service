@@ -80,3 +80,4 @@ def main():
 if __name__ == "__main__":
     main()
 #todo maryam faqat cloud_name va cloud_id,ip,new column va cost per day ro negah dar
+#todo maryam ip address mishe firstname va new column ham mishe last name havaset bashe too dict ham taqiresh bedi ezafeharam pak koni
