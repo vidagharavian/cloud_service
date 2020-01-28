@@ -22,7 +22,7 @@ def sign_in(email: str, password: str) -> dict:
     select_query = 'select * from public."%s"' + " where %s=%s"
     cur.execute(select_query, (AsIs(UserTable), AsIs('email'), email))
     rows = cur.fetchall()
-    if rows is not None:
+    if len(rows) != 0:
         boolean = verify_password(rows[0][4], password)
         if boolean:
             select_query = 'select * from public."%s"' + " where %s=%s"

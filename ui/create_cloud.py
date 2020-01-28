@@ -141,7 +141,7 @@ class CreateCloudUi(QtWidgets.QMainWindow):
 
         # if id=costumer if come from edit button -> set defualt amount for each object
         from ui.dashboard import DashboardUi
-        self.OtherWindow = DashboardUi()
+        self.OtherWindow = DashboardUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 

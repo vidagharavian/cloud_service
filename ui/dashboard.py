@@ -62,7 +62,7 @@ class DashboardUi(QtWidgets.QMainWindow):
     # todo if snapshot pressed then go to show_image.ui
     def snapshotButtonPressed(self):
         from ui.show_snapshot import ShowSnapshotUi
-        self.OtherWindow = ShowSnapshotUi()
+        self.OtherWindow = ShowSnapshotUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
