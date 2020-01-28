@@ -42,7 +42,7 @@ class CloudlistUi(QtWidgets.QMainWindow):
 
         from ui.create_cloud import CreateCloudUi
         row = self.cloudlist.currentItem().row()
-        self.OtherWindow = CreateCloudUi(cloud_id=self.cloudlist.item(row, 1).text())
+        self.OtherWindow = CreateCloudUi(cloud_id=self.cloudlist.item(row, 5).text(),user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
@@ -50,7 +50,7 @@ class CloudlistUi(QtWidgets.QMainWindow):
     def backButtonPressed(self):
         # pass ids to the other page
         from ui.dashboard import DashboardUi
-        self.OtherWindow = DashboardUi()
+        self.OtherWindow = DashboardUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
