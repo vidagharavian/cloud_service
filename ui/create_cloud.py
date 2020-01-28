@@ -43,17 +43,17 @@ class CreateCloudUi(QtWidgets.QMainWindow):
         self.update_cloud = self.findChild(QtWidgets.QPushButton,'update')
         self.update_cloud.clicked.connect(self.updateButtonPressed)
 
-        self.status = self.findChild(QtWidgets.QPushButton,'status')
+        self.status = self.findChild(QtWidgets.QComboBox,'status')
         self.status.addItem("Active",[1])
         self.status.addItem("Inactive",[0])
         if cloud_id is None:
-            update_cloud.setVisible(False)
-            create_cloud.setVisible(True)
-            status.setVisible(False)
+            self.update_cloud.setVisible(False)
+            self.createCloud.setVisible(True)
+            self.status.setVisible(False)
         else:
-            update_cloud.setVisible(True)
-            create_cloud.setVisible(False)
-            status.setVisible(True)
+            self.update_cloud.setVisible(True)
+            self.createCloud.setVisible(False)
+            self.status.setVisible(True)
 
     # todo if press caclulate button calculate total cost and show it in total_cost QTextBrowser
     def set_defaults(self):

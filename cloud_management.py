@@ -2,7 +2,6 @@ import datetime
 
 from asn1crypto._ffi import null
 
-from athentication import hash_password
 from models import Model
 
 UserTable = "Customer"
@@ -136,9 +135,14 @@ def calculate_price(core, cpu, ram, storage, bandwidth):
 
 
 def edit_profile(first_name, last_name, email, national_num, user_id: int, password=None):
+    from athentication import hash_password
     if password is not None:
         hashed_password = hash_password(password)
-    Model.update_query(model_name=UserTable, input_array={'name': first_name, 'f_name': last_name, 'email': email,
-                                                          'hashd_password': hashed_password,
-                                                          'national_num': national_num},
-                       condition=f'where id={user_id}')
+        Model.update_query(model_name=UserTable, input_array={'name': first_name, 'f_name': last_name, 'email': email,
+                                                              'hashd_password': hashed_password,
+                                                              'national_num': national_num},
+                           condition=f'where id={user_id}')
+    else:
+        Model.update_query(model_name=UserTable, input_array={'name': first_name, 'f_name': last_name, 'email': email,
+                                                              'national_num': national_num},
+                           condition=f'where id={user_id}')
