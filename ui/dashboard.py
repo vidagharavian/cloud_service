@@ -10,6 +10,7 @@ class DashboardUi(QtWidgets.QMainWindow):
     def __init__(self, user_id: int = None):
         super(DashboardUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('dashboard.ui', self)  # Load the .ui file
+        self.user_id = user_id
 
         self.edit_prof = self.findChild(QtWidgets.QPushButton, 'edit_prof')
         self.edit_prof.clicked.connect(self.editProfButtonPressed)

@@ -7,6 +7,7 @@ class IncreaseCreditUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(IncreaseCreditUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('inc_wallet.ui', self) # Load the .ui file
+        self.user_id = user_id
 
         self.transaction = self.findChild(QtWidgets.QPushButton,'transaction') 
         self.transaction.clicked.connect(self.transactionButtonPressed)

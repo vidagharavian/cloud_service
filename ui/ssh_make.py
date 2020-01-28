@@ -7,7 +7,7 @@ class MakeSSHUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(MakeSSHUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('ssh_make.ui', self) # Load the .ui file
-        
+        self.user_id = user_id
         self.ssh_name = self.findChild(QtWidgets.QTextEdit,'ssh_name')
         self.public_key = self.findChild(QtWidgets.QTextEdit,'public_key')
         self.private_key = self.findChild(QtWidgets.QTextEdit,'private_key')

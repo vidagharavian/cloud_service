@@ -8,7 +8,7 @@ class UsersListUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(UsersListUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('users_list.ui', self)  # Load the .ui file
-
+        self.user_id = user_id
         self.back = self.findChild(QtWidgets.QPushButton, 'pb_back')
         self.back.clicked.connect(self.backButtonPressed)
 

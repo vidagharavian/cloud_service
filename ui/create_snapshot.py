@@ -6,6 +6,7 @@ class CreateSnapshotUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(CreateSnapshotUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('create_image.ui', self) # Load the .ui file
+        self.user_id = user_id
 
         self.select_cloud = self.findChild(QtWidgets.QComboBox,'select_cloud')
         self.image_name = self.findChild(QtWidgets.QTextEdit,'image_name')
