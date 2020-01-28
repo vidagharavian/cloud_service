@@ -3,19 +3,26 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
+from cloud_management import edit_profile
+from models import Model
+
 
 class EditProfileUi(QtWidgets.QMainWindow):
     def __init__(self, user_id: int = None, is_admin: bool = False):
         super(EditProfileUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('edit_profile.ui', self)  # Load the .ui file
-        self.user_id=user_id
-        self.is_admin=is_admin
+        self.user_id = user_id
+        self.is_admin = is_admin
         self.first_name = self.findChild(QtWidgets.QTextEdit, 'te_fname')
         self.last_name = self.findChild(QtWidgets.QTextEdit, 'te_lname')
         self.email = self.findChild(QtWidgets.QTextEdit, 'te_email')
         self.password = self.findChild(QtWidgets.QTextEdit, 'te_password')
         self.national_num = self.findChild(QtWidgets.QTextEdit, 'te_national')
-
+        user = Model.select_query(model_name='Customer', condition=f'where id={user_id}')[0]
+        self.first_name.setText(user['name'])
+        self.last_name.setText(user['f_name'])
+        self.email.setText(user['email'])
+        self.national_num.setText(str(user['national_num']))
         self.back = self.findChild(QtWidgets.QPushButton, 'back')
         self.back.clicked.connect(self.backButtonPressed)
         self.edit = self.findChild(QtWidgets.QPushButton, 'edit')
@@ -32,7 +39,7 @@ class EditProfileUi(QtWidgets.QMainWindow):
         # self.close()
 
         # if id=costumer
-        self.OtherWindow = DashboardUi()
+        self.OtherWindow = DashboardUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
@@ -46,8 +53,9 @@ class EditProfileUi(QtWidgets.QMainWindow):
         # self.OtherWindow.show()
         # self.close()
         # if id=costumer
-
-        self.OtherWindow = DashboardUi()
+        edit_profile(self.first_name.toPlainText(), self.last_name.toPlainText(), self.email.toPlainText(),
+                     int(self.national_num.toPlainText()), self.user_id, self.password.toPlainText())
+        self.OtherWindow = DashboardUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
