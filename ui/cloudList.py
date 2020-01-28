@@ -13,10 +13,11 @@ cloud_list = {'Cloud id': 'id', 'Cloud name': 'host_name', 'IP address': 'ip', '
 
 
 class CloudlistUi(QtWidgets.QMainWindow):
-    def __init__(self, user_id: int = None):
+    def __init__(self, user_id: int = None,is_admin:bool = False):
         super(CloudlistUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('cloud_list.ui', self)  # Load the .ui file
         self.user_id = user_id
+        self.is_admin = is_admin
         print(user_id)
         self.back = self.findChild(QtWidgets.QPushButton, 'pb_back')
         self.back.clicked.connect(self.backButtonPressed)
@@ -39,20 +40,25 @@ class CloudlistUi(QtWidgets.QMainWindow):
     def editButtonPressed(self):
         # set base amounts of each object
         # pass ids to the other page
-
         from ui.create_cloud import CreateCloudUi
         row = self.cloudlist.currentItem().row()
-        self.OtherWindow = CreateCloudUi(cloud_id=self.cloudlist.item(row, 1).text())
+        self.OtherWindow = CreateCloudUi(cloud_id=self.cloudlist.item(row, 5).text(),user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
     # todo if press back button back to dashboard.ui
     def backButtonPressed(self):
         # pass ids to the other page
-        from ui.dashboard import DashboardUi
-        self.OtherWindow = DashboardUi()
-        self.OtherWindow.show()
-        self.close()
+        if is_admin:
+            from ui.admin_dashboard import AdminDashboardUi
+            self.OtherWindow = AdminDashboardUi(user_id=self.user_id) #todo what parameter?
+            self.OtherWindow.show()
+            self.close()
+        else:
+            from ui.dashboard import DashboardUi
+            self.OtherWindow = DashboardUi(user_id=self.user_id)
+            self.OtherWindow.show()
+            self.close()
 
     # todo if press newCloud button go to create_cloud.ui
     def newCloudButtonPressed(self):
@@ -83,6 +89,21 @@ class CloudlistUi(QtWidgets.QMainWindow):
                         self.tableWidget.setItem(count, x, QTableWidgetItem(str(value)))
         count += 1
 
+def get_value(object):
+    if object isinstance QtWidgets.QComboBox:
+        value = object.itemData(object.currentIndex())
+    if object isinstance QtWidgets.QTextEdit:
+        value = object.toPlainText()
+    if object isinstance QtWidgets.QTextBrowser:
+        value = object.toPlainText()
+    if object isinstance QtWidgets.QLabel:
+        value = object.text()
+    if object isinstance QtWidgets.QSpinBox:
+        value = object.value()
+    if object isinstance QtWidgets.QDoubleSpinBox:
+        value = object.value()
+    return value
+    
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication

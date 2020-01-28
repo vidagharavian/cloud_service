@@ -4,10 +4,11 @@ from PyQt5.QtGui import QIcon
 import sys
 
 class AdminDashboardUi(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self,admin_id:int=None):
         super(AdminDashboardUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('admin_dashboard.ui', self) # Load the .ui file
-
+        self.admin_id = admin_id
+        
         self.users = self.findChild(QtWidgets.QPushButton,'bt_users')
         self.users.clicked.connect(self.UsersButtonPressed)
 

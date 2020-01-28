@@ -3,7 +3,8 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
-from cloud_management import get_oses, get_os_versions, get_cloud, get_os_version, get_os, calculate_price, create_cloud
+from cloud_management import get_oses, get_os_versions, get_cloud, get_os_version, get_os, calculate_price, \
+    create_cloud, update_cloud
 
 
 class CreateCloudUi(QtWidgets.QMainWindow):
@@ -12,7 +13,7 @@ class CreateCloudUi(QtWidgets.QMainWindow):
         self.default_os_id = 0
         uic.loadUi('create_cloud.ui', self)  # Load the .ui file
         self.cloud_id = cloud_id
-        self.user_id=user_id
+        self.user_id = user_id
         self.os_type = self.findChild(QtWidgets.QComboBox, 'os_type')
         self.layout = QtWidgets.QVBoxLayout(self)
         self.set_defaults()
@@ -40,13 +41,13 @@ class CreateCloudUi(QtWidgets.QMainWindow):
         self.calculate_cost = self.findChild(QtWidgets.QPushButton, 'calculate')
         self.calculate_cost.clicked.connect(self.calculateButtonPressed)
 
-        self.update_cloud = self.findChild(QtWidgets.QPushButton,'update')
+        self.update_cloud = self.findChild(QtWidgets.QPushButton, 'update')
         self.update_cloud.clicked.connect(self.updateButtonPressed)
 
-        self.status = self.findChild(QtWidgets.QComboBox,'status')
-        self.status_label = self.findChild(QtWidgets.QLabel,'label_status')
-        self.status.addItem("Active",[1])
-        self.status.addItem("Inactive",[0])
+        self.status = self.findChild(QtWidgets.QComboBox, 'status')
+        self.status_label = self.findChild(QtWidgets.QLabel, 'label_status')
+        self.status.addItem("Active", [1])
+        self.status.addItem("Inactive", [0])
         if cloud_id is None:
             self.update_cloud.setVisible(False)
             self.createCloud.setVisible(True)
@@ -57,6 +58,18 @@ class CreateCloudUi(QtWidgets.QMainWindow):
             self.createCloud.setVisible(False)
             self.status.setVisible(True)
             self.status_label.setVisible(True)
+        self.status = self.findChild(QtWidgets.QComboBox, 'status')
+        self.status.addItem("Active", [1])
+        self.status.addItem("Inactive", [0])
+        if cloud_id is None:
+            self.update_cloud.setVisible(False)
+            self.createCloud.setVisible(True)
+            self.status.setVisible(False)
+        else:
+            self.update_cloud.setVisible(True)
+            self.createCloud.setVisible(False)
+            self.status.setVisible(True)
+
     # todo if press caclulate button calculate total cost and show it in total_cost QTextBrowser
     def set_defaults(self):
         if self.cloud_id is None:
@@ -72,7 +85,8 @@ class CreateCloudUi(QtWidgets.QMainWindow):
             self.disk.setValue(cloud['disk_amount'])
             self.ram.setValue(cloud['ram_amount'])
             self.cpu.setValue(cloud['cpu_amount'])
-            self.cost.setText(cloud['cost_per_day'])
+            self.cost.setText(str(cloud['cost_per_day']))
+            self.cloud_name.setText(cloud['host_name'])
 
     def add_os_type(self):
 
@@ -100,10 +114,20 @@ class CreateCloudUi(QtWidgets.QMainWindow):
 
     def calculateButtonPressed(self):
         # calculate cost and show it to customer
-        self.cost.setText(str(calculate_price(self.core.value(), self.cpu.value(), self.ram.value(), self.disk.value(),self.bandwidth.value())))
-    #todo first check cost<wallet and then update cloud and then go to cloud_list
+        self.cost.setText(str(calculate_price(self.core.value(), self.cpu.value(), self.ram.value(), self.disk.value(),
+                                              self.bandwidth.value())))
+
+    # todo first check cost<wallet and then update cloud and then go to cloud_list
     def updateButtonPressed(self):
-        pass
+        os_version = self.os_ver.itemData(self.os_ver.currentIndex())[0]
+        status = self.status.itemData(self.status.currentIndex())[0]
+        update_cloud(int(os_version), self.user_id, self.cloud_name.toPlainText(), self.cpu.value(), self.disk.value()
+                     , self.ram.value(), self.bandwidth.value(),self.core.value(),status,self.cloud_id)
+        from ui.cloudList import CloudlistUi
+        self.OtherWindow = CloudlistUi(user_id=self.user_id)
+        self.OtherWindow.show()
+        self.close()
+
     # todo if press back button back to dashboard.ui or admin_dashboard.ui
     def backButtonPressed(self):
         # pass parameters to dashboard
@@ -125,8 +149,8 @@ class CreateCloudUi(QtWidgets.QMainWindow):
     def createButtonPressed(self):
         # if create successfully then go to dashboard
         data = self.os_ver.itemData(self.os_ver.currentIndex())[0]
-        create_cloud(int(data),self.user_id,self.cloud_name.toPlainText(),self.cpu.value(),self.disk.value()
-                     ,self.ram.value(),self.bandwidth.value())
+        create_cloud(int(data), self.user_id, self.cloud_name.toPlainText(), self.cpu.value(), self.disk.value()
+                     , self.ram.value(), self.bandwidth.value())
         from ui.cloudList import CloudlistUi
         self.OtherWindow = CloudlistUi(user_id=self.user_id)
         self.OtherWindow.show()

@@ -22,7 +22,7 @@ def get_user_clouds(user_id: int) -> dict:
 
 def create_cloud(os_version_id: int, user_id: int, host_name: str, cpu_amount, disk_amount: float, ram_amount: float,
                  band_width: float, core_amount: int):
-    cost_per_day = calculate_price(core=core_amount, cpu=cpu_amount, storage=disk_amount, bandwidth=band_width)
+    cost_per_day = calculate_price(core=core_amount, cpu=cpu_amount, storage=disk_amount, bandwidth=band_width,ram=ram_amount)
     Model.insert_query(model_name=Cloud,
                        input_array={'user_id': user_id, 'host_name': host_name, 'cpu_amount': cpu_amount,
                                     'disk_amount': disk_amount, 'ram_amount': ram_amount, 'band_width': band_width,
@@ -152,3 +152,13 @@ def edit_profile(first_name, last_name, email, national_num, user_id: int, passw
         Model.update_query(model_name=UserTable, input_array={'name': first_name, 'f_name': last_name, 'email': email,
                                                               'national_num': national_num},
                            condition=f'where id={user_id}')
+
+
+def update_cloud(os_version_id: int, user_id: int, host_name: str, cpu_amount, disk_amount: float, ram_amount: float,
+                 band_width: float, core_amount: int, status: int, cloud_id):
+    cost_per_day = calculate_price(core=core_amount, cpu=cpu_amount, storage=disk_amount, bandwidth=band_width,ram=ram_amount)
+    Model.update_query(model_name=Cloud,
+                       input_array={'user_id': user_id, 'host_name': host_name, 'cpu_amount': cpu_amount,
+                                    'disk_amount': disk_amount, 'ram_amount': ram_amount, 'band_width': band_width,
+                                    'os_version_id': os_version_id, 'core_amount': core_amount,
+                                    'cost_per_day': cost_per_day, 'status': status}, condition=f'where id = {cloud_id}')
