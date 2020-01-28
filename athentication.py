@@ -5,11 +5,11 @@ import os
 
 from psycopg2._psycopg import AsIs
 
-from cloud_management import UserTable, CustomerInfo
 from data_base_connection import cur, conn
 
 
 def sign_up(first_name: str, last_name: str, national_num: int, email, password: str) -> dict:
+    from cloud_management import UserTable
     hashed_password = hash_password(password)
     insertion_sql = 'INSERT INTO "%s" (name, f_name, email, hashd_password,national_num)VALUES (%s,%s,%s,%s, %s);'
     cur.execute(insertion_sql, (AsIs(UserTable), first_name, last_name, email, hashed_password, national_num))
@@ -18,6 +18,7 @@ def sign_up(first_name: str, last_name: str, national_num: int, email, password:
 
 
 def sign_in(email: str, password: str) -> dict:
+    from cloud_management import CustomerInfo,UserTable
     select_query = 'select * from public."%s"' + " where %s=%s"
     cur.execute(select_query, (AsIs(UserTable), AsIs('email'), email))
     rows = cur.fetchall()
