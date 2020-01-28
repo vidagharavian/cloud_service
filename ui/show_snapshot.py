@@ -3,7 +3,15 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
+<<<<<<< HEAD
 snapshot_list = {'cloud_id':'cloud','Date creation':'date_created','minimum CPU':'cpu_amount',' minimum RAM':'ram_amount','minimum disk':'disk_amount','minimum core':'core_amount','Bound width':'band_width'}
+=======
+from PyQt5.QtWidgets import QTableWidgetItem
+
+from cloud_management import get_snapshots
+
+ssh_list={}
+>>>>>>> 60afe33bb9beb4d3b055e8d5d28aebbe81163511
 class ShowSnapshotUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(ShowSnapshotUi, self).__init__() # Call the inherited classes __init__ method
@@ -23,6 +31,7 @@ class ShowSnapshotUi(QtWidgets.QMainWindow):
         self.delete.clicked.connect(self.deleteButtonPressed)
 
         self.snapshot_table = self.findChild(QtWidgets.QPushButton,'tableWidget')
+
     
     #todo if press revert I don't know 
     def revertButtonPressed(self):
@@ -45,6 +54,22 @@ class ShowSnapshotUi(QtWidgets.QMainWindow):
     #todo if press delete button then delete ssh and update table
     def deleteButtonPressed(self):
         pass
+
+    def create_table(self):
+        snapshots = get_snapshots(user_id=self.user_id)
+        self.snapshot_table.setRowCount(len(snapshots))
+        count = 0
+        for cloud in snapshots:
+            for key, value in cloud.items():
+                headercount = self.cloudlist.columnCount()
+                m = key
+                for x in range(0, headercount, 1):
+                    headertext = self.cloudlist.horizontalHeaderItem(x).text()
+                    if m == ssh_list[headertext]:
+                        self.tableWidget.setItem(count, x, QTableWidgetItem(str(value)))
+        count += 1
+
+
 def main():
     app = QtWidgets.QApplication(sys.argv) #Create an instance of QtWidgets.QApplication
     window = ShowSnapshotUi() # Create an instance of our class
