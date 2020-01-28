@@ -7,7 +7,8 @@ class CreateTicketUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(CreateTicketUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('create_ticket.ui', self) # Load the .ui file
-        
+        self.user_id = user_id
+
         self.selected_cloud = self.findChild(QtWidgets.QTextEdit,'cloud_list')
         self.title = self.findChild(QtWidgets.QTextEdit,'title')
         self.message = self.findChild(QtWidgets.QTextEdit,'message')

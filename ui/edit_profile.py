@@ -13,6 +13,7 @@ class EditProfileUi(QtWidgets.QMainWindow):
         uic.loadUi('edit_profile.ui', self)  # Load the .ui file
         self.user_id = user_id
         self.is_admin = is_admin
+        
         self.first_name = self.findChild(QtWidgets.QTextEdit, 'te_fname')
         self.last_name = self.findChild(QtWidgets.QTextEdit, 'te_lname')
         self.email = self.findChild(QtWidgets.QTextEdit, 'te_email')

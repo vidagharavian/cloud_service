@@ -15,9 +15,10 @@ cloud_list = {'Cloud id': 'cloud_id', 'Cloud name': 'host_name', 'IP address': '
 
 
 class AdminCloudListUi(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self , user_id:int=None):
         super(AdminCloudListUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('admin_cloud_list.ui', self)  # Load the .ui file
+        self.user_id = user_id
 
         self.back = self.findChild(QtWidgets.QPushButton, 'back')
         self.back.clicked.connect(self.backButtonPressed)

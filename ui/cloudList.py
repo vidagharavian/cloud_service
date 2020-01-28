@@ -89,20 +89,6 @@ class CloudlistUi(QtWidgets.QMainWindow):
                         self.tableWidget.setItem(count, x, QTableWidgetItem(str(value)))
         count += 1
 
-def get_value(object):
-    if object isinstance QtWidgets.QComboBox:
-        value = object.itemData(object.currentIndex())
-    if object isinstance QtWidgets.QTextEdit:
-        value = object.toPlainText()
-    if object isinstance QtWidgets.QTextBrowser:
-        value = object.toPlainText()
-    if object isinstance QtWidgets.QLabel:
-        value = object.text()
-    if object isinstance QtWidgets.QSpinBox:
-        value = object.value()
-    if object isinstance QtWidgets.QDoubleSpinBox:
-        value = object.value()
-    return value
     
 
 def main():

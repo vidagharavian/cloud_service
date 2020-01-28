@@ -3,15 +3,20 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
+<<<<<<< HEAD
+snapshot_list = {'cloud_id':'cloud','Date creation':'date_created','minimum CPU':'cpu_amount',' minimum RAM':'ram_amount','minimum disk':'disk_amount','minimum core':'core_amount','Bound width':'band_width'}
+=======
 from PyQt5.QtWidgets import QTableWidgetItem
 
 from cloud_management import get_snapshots
 
 ssh_list={}
+>>>>>>> 60afe33bb9beb4d3b055e8d5d28aebbe81163511
 class ShowSnapshotUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(ShowSnapshotUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('show_image.ui', self) # Load the .ui file
+        self.user_id = user_id
 
         self.createImage = self.findChild(QtWidgets.QPushButton,'create')
         self.createImage.clicked.connect(self.createButtonPressed)

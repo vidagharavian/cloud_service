@@ -7,7 +7,7 @@ class ShowSSHUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(ShowSSHUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('show_ssh.ui', self) # Load the .ui file
-        
+        self.user_id = user_id
         self.back = self.findChild(QtWidgets.QPushButton,'bt_back')
         self.back.clicked.connect(self.backButtonPressed)
 
