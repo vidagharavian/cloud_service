@@ -3,6 +3,9 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
+from cloud_management import get_public_private_key
+
+
 class MakeSSHUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(MakeSSHUi, self).__init__() # Call the inherited classes __init__ method
@@ -12,7 +15,7 @@ class MakeSSHUi(QtWidgets.QMainWindow):
         self.public_key = self.findChild(QtWidgets.QTextEdit,'public_key')
         self.private_key = self.findChild(QtWidgets.QTextEdit,'private_key')
         self.cloud_list = self.findChild(QtWidgets.QComboBox,'cloud_list')
-
+        keys=get_public_private_key()
         self.back = self.findChild(QtWidgets.QPushButton,'back')
         self.back.clicked.connect(self.backButtonPressed)
 
@@ -24,14 +27,14 @@ class MakeSSHUi(QtWidgets.QMainWindow):
         pass
     #todo if press back button back to dashboard
     def backButtonPressed(self):
-        from dashboard import DashboardUi
+        from ui.dashboard import DashboardUi
         self.OtherWindow = DashboardUi()
         self.OtherWindow.show()
         self.close()
     #todo if press submit button go to dashboard and save public_key and name for the cloud
     def submitButtonPressed(self):
         #first save this ssh for cloud then go to dashboard
-        from dashboard import DashboardUi
+        from ui.dashboard import DashboardUi
         self.OtherWindow = DashboardUi()
         self.OtherWindow.show()
         self.close()

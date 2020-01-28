@@ -2,6 +2,7 @@ import datetime
 import time
 
 from asn1crypto._ffi import null
+from cryptography.hazmat.backends.openssl import rsa
 
 from models import Model
 
@@ -162,3 +163,24 @@ def update_cloud(os_version_id: int, user_id: int, host_name: str, cpu_amount, d
                                     'disk_amount': disk_amount, 'ram_amount': ram_amount, 'band_width': band_width,
                                     'os_version_id': os_version_id, 'core_amount': core_amount,
                                     'cost_per_day': cost_per_day, 'status': status}, condition=f'where id = {cloud_id}')
+def get_public_private_key():
+    from cryptography.hazmat.primitives import serialization as crypto_serialization
+    from cryptography.hazmat.primitives.asymmetric import rsa
+    from cryptography.hazmat.backends import default_backend as crypto_default_backend
+    key = rsa.generate_private_key(
+        backend=crypto_default_backend(),
+        public_exponent=65537,
+        key_size=2048
+    )
+    private_key = key.private_bytes(
+        crypto_serialization.Encoding.PEM,
+        crypto_serialization.PrivateFormat.PKCS8,
+        crypto_serialization.NoEncryption())
+    public_key = key.public_key().public_bytes(
+        crypto_serialization.Encoding.OpenSSH,
+        crypto_serialization.PublicFormat.OpenSSH
+    )
+    return {
+        'private_key':private_key,
+        'public_key':public_key
+    }
