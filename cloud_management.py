@@ -62,7 +62,7 @@ def get_user_ssh(user_id):
 
 
 def get_snapshots(user_id):
-    return Model.select_query(model_name=SnapShot,condition=f'where cloud in (select id from public."Wallet" where user_id = {user_id} ')
+    return Model.select_query(model_name=SnapShot,condition=f'where cloud in (select id from public."Wallet" where user_id = {user_id})')
 
 
 def revert_snapshot(snapshot_id):

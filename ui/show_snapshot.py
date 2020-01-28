@@ -29,7 +29,7 @@ class ShowSnapshotUi(QtWidgets.QMainWindow):
         self.delete = self.findChild(QtWidgets.QPushButton, 'delete_2')
         self.delete.clicked.connect(self.deleteButtonPressed)
 
-        self.snapshot_table = self.findChild(QtWidgets.QPushButton, 'tableWidget')
+        self.snapshot_table = self.findChild(QtWidgets.QTableWidget, 'tableWidget')
         self.create_table()
 
     # todo if press revert I don't know
@@ -46,7 +46,7 @@ class ShowSnapshotUi(QtWidgets.QMainWindow):
     # todo if press createImage go to CreateSnapshotUi pass user and cloud id
     def createButtonPressed(self):
         from ui.create_snapshot import CreateSnapshotUi
-        self.OtherWindow = CreateSnapshotUi()
+        self.OtherWindow = CreateSnapshotUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
