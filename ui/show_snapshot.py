@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
+
 class ShowSnapshotUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(ShowSnapshotUi, self).__init__() # Call the inherited classes __init__ method
@@ -27,14 +28,14 @@ class ShowSnapshotUi(QtWidgets.QMainWindow):
 
     #todo if press back button back to dashboard.ui and pass ids to it
     def backButtonPressed(self):
-        from dashboard import DashboardUi
+        from ui.dashboard import DashboardUi
         self.OtherWindow = DashboardUi()
         self.OtherWindow.show()
         self.close()
    
     #todo if press createImage go to CreateSnapshotUi pass user and cloud id
     def createButtonPressed(self):
-        from create_snapshot import CreateSnapshotUi
+        from ui.create_snapshot import CreateSnapshotUi
         self.OtherWindow = CreateSnapshotUi()
         self.OtherWindow.show()
         self.close()
