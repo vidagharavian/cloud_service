@@ -3,7 +3,7 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 class ShowSnapshotUi(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self , user_id:int=None):
         super(ShowSnapshotUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('show_image.ui', self) # Load the .ui file
 

@@ -108,3 +108,6 @@ def get_os_version(os_version: int):
 
 def get_os(os_id):
     return Model.select_query(model_name='OS', condition=f'where id={os_id}')
+
+def calculate_price(core,cpu,ram,storage,bandwidth):
+    return core*cpu*5000+ram*4000+storage*2000+bandwidth*1000

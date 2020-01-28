@@ -3,7 +3,7 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 class DashboardUi(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self , user_id:int=None):
         super(DashboardUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('dashboard.ui', self) # Load the .ui file
 

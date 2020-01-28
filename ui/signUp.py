@@ -3,6 +3,9 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
+from athentication import sign_up
+
+
 class SignUpUi(QtWidgets.QMainWindow):
     def __init__(self):
         super(SignUpUi, self).__init__() # Call the inherited classes __init__ method
@@ -31,6 +34,7 @@ class SignUpUi(QtWidgets.QMainWindow):
 
     #todo if press signup button go to dashboard page
     def signupButtonPressed(self):
+        sign_up(self.first_name.toPlainText(),self.last_name.toPlainText(),self.national_num.toPlainText(),self.email.toPlainText(),self.password.toPlainText())
         from ui.dashboard import DashboardUi
         self.OtherWindow = DashboardUi()
         self.OtherWindow.show()

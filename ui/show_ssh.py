@@ -4,7 +4,7 @@ from PyQt5.QtGui import QIcon
 import sys
 
 class ShowSSHUi(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self , user_id:int=None):
         super(ShowSSHUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('show_ssh.ui', self) # Load the .ui file
         

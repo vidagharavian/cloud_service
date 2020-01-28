@@ -5,7 +5,7 @@ import sys
 
 
 class UsersListUi(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self , user_id:int=None):
         super(UsersListUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('users_list.ui', self)  # Load the .ui file
 

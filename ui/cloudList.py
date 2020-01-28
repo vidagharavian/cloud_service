@@ -11,7 +11,7 @@ from models import Model
 cloud_list={'Cloud id':'id','Cloud name':'host_name','IP address':'ip','Cloud status':'status','Date':'date_created','User id':'user_id'}
 
 class CloudlistUi(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self , user_id:int=None):
         super(CloudlistUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('cloud_list.ui', self) # Load the .ui file
         
