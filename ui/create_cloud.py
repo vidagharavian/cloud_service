@@ -3,15 +3,16 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
-from cloud_management import get_oses, get_os_versions, get_cloud, get_os_version, get_os
+from cloud_management import get_oses, get_os_versions, get_cloud, get_os_version, get_os, calculate_price, create_cloud
 
 
 class CreateCloudUi(QtWidgets.QMainWindow):
-    def __init__(self, cloud_id: int = None):
+    def __init__(self, cloud_id: int = None, user_id: int = None):
         super(CreateCloudUi, self).__init__()  # Call the inherited classes __init__ method
-        self.default_os_id=0
+        self.default_os_id = 0
         uic.loadUi('create_cloud.ui', self)  # Load the .ui file
         self.cloud_id = cloud_id
+        self.user_id=user_id
         self.os_type = self.findChild(QtWidgets.QComboBox, 'os_type')
         self.layout = QtWidgets.QVBoxLayout(self)
         self.set_defaults()
@@ -47,18 +48,19 @@ class CreateCloudUi(QtWidgets.QMainWindow):
             cloud = get_cloud(int(self.cloud_id))
             cloud = cloud[0]
             os_version = get_os_version(int(cloud['os_version_id']))[0]
-            self.default_os_id=os_version['os_id']
+            self.default_os_id = os_version['os_id']
             self.os_type.addItem(os_version['name'], [str(os_version['os_id'])])
-            self.cpu.setValue(cloud['cpu_amount'])
-            self.core.setValue(cloud['core_amount'])
+            self.cpu.setValue(cloud['cpu_amount'] if cloud['cpu_amount'] is not None else 1)
+            self.core.setValue(cloud['core_amount'] if cloud['core_amount'] is not None else 1)
             self.disk.setValue(cloud['disk_amount'])
             self.ram.setValue(cloud['ram_amount'])
             self.cpu.setValue(cloud['cpu_amount'])
+            self.cost.setText(cloud['cost_per_day'])
 
     def add_os_type(self):
 
         for os_type in get_oses():
-            if os_type['id'] !=self.default_os_id:
+            if os_type['id'] != self.default_os_id:
                 self.os_type.addItem(os_type['name'], [str(os_type['id'])])
         self.os_type.currentIndexChanged.connect(self.indexChanged)
         self.layout.addWidget(self.os_type)
@@ -79,10 +81,11 @@ class CreateCloudUi(QtWidgets.QMainWindow):
             self.disk.setMinimum(os['base_disk'])
             self.bandwidth.setMinimum(os['base_band_width'])
 
-
     def calculateButtonPressed(self):
         # calculate cost and show it to customer
-        pass
+        self.cost.setText(str(calculate_price(self.core.value(), self.cpu.value(), self.ram.value(), self.disk.value(),
+                                          self.bandwidth.value())))
+
 
     # todo if press back button back to dashboard.ui or admin_dashboard.ui
     def backButtonPressed(self):
@@ -104,6 +107,9 @@ class CreateCloudUi(QtWidgets.QMainWindow):
     # todo if press create button 1.check wallet>cost 2.add all attributes in clouds of user
     def createButtonPressed(self):
         # if create successfully then go to dashboard
+        data = self.os_ver.itemData(self.os_ver.currentIndex())[0]
+        create_cloud(int(data),self.user_id,self.cloud_name.toPlainText(),self.cpu.value(),self.disk.value()
+                     ,self.ram.value(),self.bandwidth.value())
         from ui.dashboard import DashboardUi
         self.OtherWindow = DashboardUi()
         self.OtherWindow.show()
@@ -119,4 +125,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-#todo maryam oon cloud numbero bardar
+# todo maryam oon cloud numbero bardar
