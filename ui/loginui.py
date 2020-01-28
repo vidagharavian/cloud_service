@@ -59,6 +59,7 @@ class LoginUi(QtWidgets.QMainWindow):
             value = object.value()
         return value
 
+
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
     window = LoginUi()  # Create an instance of our class
