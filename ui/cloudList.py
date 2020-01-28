@@ -49,7 +49,7 @@ class CloudlistUi(QtWidgets.QMainWindow):
     # todo if press back button back to dashboard.ui
     def backButtonPressed(self):
         # pass ids to the other page
-        if is_admin:
+        if self.is_admin:
             from ui.admin_dashboard import AdminDashboardUi
             self.OtherWindow = AdminDashboardUi(user_id=self.user_id) #todo what parameter?
             self.OtherWindow.show()

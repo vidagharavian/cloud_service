@@ -45,6 +45,7 @@ class LoginUi(QtWidgets.QMainWindow):
         print('signiupButtonPressed')
 
 
+
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
     window = LoginUi()  # Create an instance of our class

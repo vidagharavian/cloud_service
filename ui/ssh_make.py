@@ -15,7 +15,7 @@ class MakeSSHUi(QtWidgets.QMainWindow):
         self.public_key = self.findChild(QtWidgets.QTextEdit,'public_key')
         self.private_key = self.findChild(QtWidgets.QTextEdit,'private_key')
         self.cloud_list = self.findChild(QtWidgets.QComboBox,'cloud_list')
-        keys=get_public_private_key()
+        keys = get_public_private_key()
         self.back = self.findChild(QtWidgets.QPushButton,'back')
         self.back.clicked.connect(self.backButtonPressed)
 
