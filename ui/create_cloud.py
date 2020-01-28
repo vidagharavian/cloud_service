@@ -43,20 +43,20 @@ class CreateCloudUi(QtWidgets.QMainWindow):
         self.update_cloud = self.findChild(QtWidgets.QPushButton,'update')
         self.update_cloud.clicked.connect(self.updateButtonPressed)
 
-        self.status = self.findChild(QtWidgets.QPushButton,'status')
+        self.status = self.findChild(QtWidgets.QComboBox,'status')
         self.status_label = self.findChild(QtWidgets.QLabel,'label_status')
         self.status.addItem("Active",[1])
         self.status.addItem("Inactive",[0])
         if cloud_id is None:
-            update_cloud.setVisible(False)
-            create_cloud.setVisible(True)
-            status.setVisible(False)
-            status_label.setVisible(False)
+            self.update_cloud.setVisible(False)
+            self.createCloud.setVisible(True)
+            self.status.setVisible(False)
+            self.status_label.setVisible(False)
         else:
-            update_cloud.setVisible(True)
-            create_cloud.setVisible(False)
-            status.setVisible(True)
-            status_label.setVisible(True)
+            self.update_cloud.setVisible(True)
+            self.createCloud.setVisible(False)
+            self.status.setVisible(True)
+            self.status_label.setVisible(True)
         self.status = self.findChild(QtWidgets.QComboBox,'status')
         self.status.addItem("Active",[1])
         self.status.addItem("Inactive",[0])
@@ -139,8 +139,8 @@ class CreateCloudUi(QtWidgets.QMainWindow):
         data = self.os_ver.itemData(self.os_ver.currentIndex())[0]
         create_cloud(int(data),self.user_id,self.cloud_name.toPlainText(),self.cpu.value(),self.disk.value()
                      ,self.ram.value(),self.bandwidth.value())
-        from ui.dashboard import DashboardUi
-        self.OtherWindow = DashboardUi()
+        from ui.cloudList import CloudlistUi
+        self.OtherWindow = CloudlistUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 

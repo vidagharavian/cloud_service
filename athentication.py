@@ -14,17 +14,17 @@ def sign_up(first_name: str, last_name: str, national_num: int, email, password:
     insertion_sql = 'INSERT INTO "%s" (name, f_name, email, hashd_password,national_num)VALUES (%s,%s,%s,%s, %s);'
     cur.execute(insertion_sql, (AsIs(UserTable), first_name, last_name, email, hashed_password, national_num))
     conn.commit()
-    return sign_in(email=email,password=password)
+    return sign_in(email=email, password=password)
 
 
 def sign_in(email: str, password: str) -> dict:
-    from cloud_management import CustomerInfo,UserTable
+    from cloud_management import CustomerInfo, UserTable
     select_query = 'select * from public."%s"' + " where %s=%s"
     cur.execute(select_query, (AsIs(UserTable), AsIs('email'), email))
     rows = cur.fetchall()
     if rows is not None:
-        boolean=verify_password(rows[0][4],password)
-        if boolean :
+        boolean = verify_password(rows[0][4], password)
+        if boolean:
             select_query = 'select * from public."%s"' + " where %s=%s"
             cur.execute(select_query, (AsIs(CustomerInfo), AsIs('email'), email))
             for row in rows:
@@ -57,6 +57,4 @@ def verify_password(stored_password, provided_password):
     pwdhash = binascii.hexlify(pwdhash).decode('ascii')
     return pwdhash == stored_password
 
-
-#sign_up('vida', 'gharavian', 123456, 'mgharavian@gmail.com', '123456')
-
+# sign_up('vida', 'gharavian', 123456, 'mgharavian@gmail.com', '123456')

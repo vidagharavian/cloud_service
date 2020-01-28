@@ -13,7 +13,8 @@ class DashboardUi(QtWidgets.QMainWindow):
 
         self.edit_prof = self.findChild(QtWidgets.QPushButton, 'edit_prof')
         self.edit_prof.clicked.connect(self.editProfButtonPressed)
-        self.user_id=user_id
+        self.user_id = user_id
+        print(user_id)
         self.clouds = self.findChild(QtWidgets.QPushButton, 'bt_cloud')
         self.clouds.clicked.connect(self.cloudsButtonPressed)
 
@@ -40,12 +41,14 @@ class DashboardUi(QtWidgets.QMainWindow):
         self.remain = self.findChild(QtWidgets.QTextBrowser, 'tb_masraf')
         self.wallet = get_wallet(user_id)[0]
         self.remain.setText(str(self.wallet['amount']))
+        if self.wallet['amount'] <0:
+            self.notif.setText("موجودی شما منفی می باشد. ")
         self.consume = self.findChild(QtWidgets.QTextBrowser, 'tb_remainConsume')
 
     # todo if editProf pressed then go to edit_prof.ui
     def editProfButtonPressed(self):
         from ui.edit_profile import EditProfileUi
-        self.OtherWindow = EditProfileUi()
+        self.OtherWindow = EditProfileUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 

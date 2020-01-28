@@ -14,16 +14,19 @@ OsVersion = 'OsVersion'
 
 
 def get_user_clouds(user_id: int) -> dict:
-    return Model.select_query(model_name=Cloud, out_put_array=['id', 'host_name', 'status', 'ip', 'date_created'],
+    return Model.select_query(model_name=Cloud,
+                              out_put_array=['id', 'host_name', 'status', 'ip', 'date_created', 'cost_per_day'],
                               condition=f'where user_id={user_id}')
 
 
 def create_cloud(os_version_id: int, user_id: int, host_name: str, cpu_amount, disk_amount: float, ram_amount: float,
-                 band_width: float):
+                 band_width: float, core_amount: int):
+    cost_per_day = calculate_price(core=core_amount, cpu=cpu_amount, storage=disk_amount, bandwidth=band_width)
     Model.insert_query(model_name=Cloud,
                        input_array={'user_id': user_id, 'host_name': host_name, 'cpu_amount': cpu_amount,
                                     'disk_amount': disk_amount, 'ram_amount': ram_amount, 'band_width': band_width,
-                                    'os_version_id': os_version_id})
+                                    'os_version_id': os_version_id, 'core_amount': core_amount,
+                                    'cost_per_day': cost_per_day})
 
 
 def take_snapshot(cloud_id: int, name: str):
@@ -98,7 +101,7 @@ def get_wallet(user_id):
             amount = 0
             for cloud in clouds:
                 amount = amount + cloud['cost_per_day']
-            do_transaction(amount, wallet_id)
+            do_transaction(-amount, wallet_id)
             return wallet
         now = datetime.date.today()
         if now > transactions[len(transactions) - 1]['date_created']:
@@ -107,6 +110,7 @@ def get_wallet(user_id):
                 amount = amount + cloud['cost_per_day']
             do_transaction(amount, wallet_id)
             return wallet
+        return wallet
 
 
 def get_cloud(cloud_id):

@@ -27,7 +27,7 @@ class AdminDashboardUi(QtWidgets.QMainWindow):
 
     #todo if editProf pressed then go to users_list.ui and send ids
     def UsersButtonPressed(self):
-        from users_list import UsersListUi
+        from ui.users_list import UsersListUi
         self.OtherWindow = UsersListUi()
         self.OtherWindow.show()
         self.close()
