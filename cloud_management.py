@@ -1,4 +1,5 @@
 import datetime
+import time
 
 from asn1crypto._ffi import null
 
@@ -109,6 +110,7 @@ def get_wallet(user_id):
             for cloud in clouds:
                 amount = amount + cloud['cost_per_day']
             do_transaction(amount, wallet_id)
+            time.sleep(0.25)
             return wallet
         return wallet
 
