@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from cryptography.hazmat.primitives import serialization as crypto_serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.backends import default_backend as crypto_default_backend
@@ -28,7 +27,6 @@ get_value(cpu)
 # from cryptography.hazmat.primitives import serialization as crypto_serialization
 # from cryptography.hazmat.primitives.asymmetric import rsa
 # from cryptography.hazmat.backends import default_backend as crypto_default_backend
->>>>>>> 9b63f7dd90aa768121c32c5989f9e55f64aab3f0
 
 # key = rsa.generate_private_key(
 #     backend=crypto_default_backend(),

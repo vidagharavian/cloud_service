@@ -32,46 +32,47 @@ class EditProfileUi(QtWidgets.QMainWindow):
     # todo if press back button back to login page
     def backButtonPressed(self):
         # from admin_dashboard import AdminDashboardUi
-        from ui.dashboard import DashboardUi
-
-        # if id= admin
-        # self.OtherWindow = AdminDashboardUi()
-        # self.OtherWindow.show()
-        # self.close()
-
-        # if id=costumer
-        self.OtherWindow = DashboardUi(user_id=self.user_id)
-        self.OtherWindow.show()
-        self.close()
+        if self.is_admin:
+            from ui.admin_dashboard import AdminDashboardUi
+            self.OtherWindow = AdminDashboardUi(user_id=self.user_id)
+            self.OtherWindow.show()
+            self.close()
+        else:
+            from ui.dashboard import DashboardUi
+            self.OtherWindow = DashboardUi(user_id=self.user_id)
+            self.OtherWindow.show()
+            self.close()
 
     # todo if press edit button go to dashboard page and update profile
     def editButtonPressed(self):
         # first update profile then go to dashboard
         # from admin_dashboard import AdminDashboardUi
-        from ui.dashboard import DashboardUi
-        # if id= admin
-        # self.OtherWindow = AdminDashboardUi()
-        # self.OtherWindow.show()
-        # self.close()
-        # if id=costumer
         edit_profile(self.first_name.toPlainText(), self.last_name.toPlainText(), self.email.toPlainText(),
                      int(self.national_num.toPlainText()), self.user_id, self.password.toPlainText())
-        self.OtherWindow = DashboardUi(user_id=self.user_id)
-        self.OtherWindow.show()
-        self.close()
+
+        if self.is_admin:
+            from ui.admin_dashboard import AdminDashboardUi
+            self.OtherWindow = AdminDashboardUi(user_id=self.user_id)
+            self.OtherWindow.show()
+            self.close()
+        else:
+            from ui.dashboard import DashboardUi
+            self.OtherWindow = DashboardUi(user_id=self.user_id)
+            self.OtherWindow.show()
+            self.close()
 
     def get_value(object):
-        if isinstance(object, QtGui.QtWidgets.QComboBox):
+        if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
-        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+        if isinstance( object,QtWidgets.QTextEdit):
             value = object.toPlainText()
-        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+        if isinstance(object,QtWidgets.QTextBrowser):
             value = object.toPlainText()
-        if isinstance(object, QtGui.QtWidgets.QLabel):
+        if isinstance(object,QtWidgets.QLabel):
             value = object.text()
-        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+        if isinstance(object,QtWidgets.QSpinBox):
             value = object.value()
-        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+        if isinstance (object,QtWidgets.QDoubleSpinBox):
             value = object.value()
         return value
 

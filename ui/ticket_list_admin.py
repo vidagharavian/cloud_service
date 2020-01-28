@@ -3,6 +3,10 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
+admin_ticket_list = {'title':'ticket_title','message':'ticket_body','response':'response_body',
+                'date created':'date_created','message_id':'ticket_id',
+                'response_id':'response_id'} #todo we have "message status" column in list
+
 class AdminTicketListUi(QtWidgets.QMainWindow):
     def __init__(self,user_id:int=None):
         super(AdminTicketListUi, self).__init__() # Call the inherited classes __init__ method
@@ -28,24 +32,27 @@ class AdminTicketListUi(QtWidgets.QMainWindow):
 
     #todo if press back button back to dashboard.ui
     def backButtonPressed(self):
-        pass
+        from ui.admin_dashboard import AdminDashboardUi
+        self.OtherWindow = AdminDashboardUi(user_id=self.user_id)
+        self.OtherWindow.show()
+        self.close()
 
     #todo if press newTicket button go to response_ticket.ui
     def responseButtonPressed(self):
         pass
 
     def get_value(object):
-        if isinstance(object, QtGui.QtWidgets.QComboBox):
+        if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
-        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+        if isinstance( object,QtWidgets.QTextEdit):
             value = object.toPlainText()
-        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+        if isinstance(object,QtWidgets.QTextBrowser):
             value = object.toPlainText()
-        if isinstance(object, QtGui.QtWidgets.QLabel):
+        if isinstance(object,QtWidgets.QLabel):
             value = object.text()
-        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+        if isinstance(object,QtWidgets.QSpinBox):
             value = object.value()
-        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+        if isinstance (object,QtWidgets.QDoubleSpinBox):
             value = object.value()
         return value
 

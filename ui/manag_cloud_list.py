@@ -3,6 +3,10 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
+cloud_list_manager = {'User id': 'user_id','Cloud id': 'cloud_id', 'Cloud name': 'host_name', 'First name':                 'first_name', 'Cloud status': 'status',
+              'CPU': 'cpu_amount', 'CORE': 'core_amount',
+              'DISK': 'disk_amount', 'RAM': 'ram_amount', 'cost per day': 'Cost_per_day','New Column':'last_name','Date': 'date_created'}
+
 class ManageCloudListUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(ManageCloudListUi, self).__init__() # Call the inherited classes __init__ method
@@ -20,22 +24,22 @@ class ManageCloudListUi(QtWidgets.QMainWindow):
     #todo if press back button back to manag_dashboard.ui
     def backButtonPressed(self):
         from ui.manag_dashboard import ManageDashboardUi
-        self.OtherWindow = ManageDashboardUi()
+        self.OtherWindow = ManageDashboardUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
 
     def get_value(object):
-        if isinstance(object, QtGui.QtWidgets.QComboBox):
+        if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
-        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+        if isinstance( object,QtWidgets.QTextEdit):
             value = object.toPlainText()
-        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+        if isinstance(object,QtWidgets.QTextBrowser):
             value = object.toPlainText()
-        if isinstance(object, QtGui.QtWidgets.QLabel):
+        if isinstance(object,QtWidgets.QLabel):
             value = object.text()
-        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+        if isinstance(object,QtWidgets.QSpinBox):
             value = object.value()
-        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+        if isinstance (object,QtWidgets.QDoubleSpinBox):
             value = object.value()
         return value
 

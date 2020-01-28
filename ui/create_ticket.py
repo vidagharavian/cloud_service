@@ -23,7 +23,7 @@ class CreateTicketUi(QtWidgets.QMainWindow):
     #todo if press back button back to dashboard.ui and pass ids
     def backButtonPressed(self):
         from dashboard import DashboardUi
-        self.OtherWindow = DashboardUi()
+        self.OtherWindow = DashboardUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
 
@@ -31,22 +31,22 @@ class CreateTicketUi(QtWidgets.QMainWindow):
     def sendButtonPressed(self):
         #first save ticket then go to dashboard
         from dashboard import DashboardUi
-        self.OtherWindow = DashboardUi()
+        self.OtherWindow = DashboardUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
 
     def get_value(object):
-        if isinstance(object, QtGui.QtWidgets.QComboBox):
+        if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
-        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+        if isinstance( object,QtWidgets.QTextEdit):
             value = object.toPlainText()
-        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+        if isinstance(object,QtWidgets.QTextBrowser):
             value = object.toPlainText()
-        if isinstance(object, QtGui.QtWidgets.QLabel):
+        if isinstance(object,QtWidgets.QLabel):
             value = object.text()
-        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+        if isinstance(object,QtWidgets.QSpinBox):
             value = object.value()
-        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+        if isinstance (object,QtWidgets.QDoubleSpinBox):
             value = object.value()
         return value
 

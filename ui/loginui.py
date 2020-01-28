@@ -8,7 +8,7 @@ from athentication import sign_in
 
 
 class LoginUi(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self,is_admin:bool = False):
         super(LoginUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('login.ui', self)  # Load the .ui file
 
@@ -45,17 +45,17 @@ class LoginUi(QtWidgets.QMainWindow):
         print('signiupButtonPressed')
 
     def get_value(object):
-        if isinstance(object, QtGui.QtWidgets.QComboBox):
+        if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
-        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+        if isinstance( object,QtWidgets.QTextEdit):
             value = object.toPlainText()
-        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+        if isinstance(object,QtWidgets.QTextBrowser):
             value = object.toPlainText()
-        if isinstance(object, QtGui.QtWidgets.QLabel):
+        if isinstance(object,QtWidgets.QLabel):
             value = object.text()
-        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+        if isinstance(object,QtWidgets.QSpinBox):
             value = object.value()
-        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+        if isinstance (object,QtWidgets.QDoubleSpinBox):
             value = object.value()
         return value
 

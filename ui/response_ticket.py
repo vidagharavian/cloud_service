@@ -22,31 +22,31 @@ class ResponseTicketUi(QtWidgets.QMainWindow):
         
     #todo if press back button back to dashboard.ui(or ticket_list.ui)
     def backButtonPressed(self):
-        from admin_dashboard import AdminDashboardUi
-        self.OtherWindow = AdminDashboardUi()
+        from ui.ticket_list_admin import AdminTicketListUi
+        self.OtherWindow = AdminTicketListUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
 
     #todo if press send button go to dashboard page and save it in ticket table and set 'pasokh dade shod'
     def replyButtonPressed(self):
         #save response and back to dashboard
-        from admin_dashboard import AdminDashboardUi
-        self.OtherWindow = AdminDashboardUi()
+        from admin_dashboard import AdminTicketListUi
+        self.OtherWindow = AdminTicketListUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
 
     def get_value(object):
-        if isinstance(object, QtGui.QtWidgets.QComboBox):
+        if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
-        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+        if isinstance( object,QtWidgets.QTextEdit):
             value = object.toPlainText()
-        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+        if isinstance(object,QtWidgets.QTextBrowser):
             value = object.toPlainText()
-        if isinstance(object, QtGui.QtWidgets.QLabel):
+        if isinstance(object,QtWidgets.QLabel):
             value = object.text()
-        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+        if isinstance(object,QtWidgets.QSpinBox):
             value = object.value()
-        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+        if isinstance (object,QtWidgets.QDoubleSpinBox):
             value = object.value()
         return value
 

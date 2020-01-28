@@ -3,6 +3,11 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
+snapshot_list_manager = {'User id': 'user_id','Cloud id': 'cloud_id', 'Cloud name': 'host_name', 
+                'Date creation':'date_created', 'Cloud status': 'status',
+                'minimum CPU': 'cpu_amount', 'minimum core': 'core_amount',
+                'minimum disk': 'disk_amount', ' minimum RAM': 'ram_amount', 'Bound width': 'band_width'}
+
 class AdminSnapshotListUi(QtWidgets.QMainWindow):
     def __init__(self,user_id:int = None):
         super(AdminSnapshotListUi, self).__init__() # Call the inherited classes __init__ method
@@ -27,7 +32,7 @@ class AdminSnapshotListUi(QtWidgets.QMainWindow):
     #todo if press back button back to dashboard.ui
     def backButtonPressed(self):
         from admin_dashboard import AdminDashboardUi
-        self.OtherWindow = AdminDashboardUi()
+        self.OtherWindow = AdminDashboardUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
    
@@ -38,17 +43,17 @@ class AdminSnapshotListUi(QtWidgets.QMainWindow):
 
 
     def get_value(object):
-        if isinstance(object, QtGui.QtWidgets.QComboBox):
+        if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
-        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+        if isinstance( object,QtWidgets.QTextEdit):
             value = object.toPlainText()
-        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+        if isinstance(object,QtWidgets.QTextBrowser):
             value = object.toPlainText()
-        if isinstance(object, QtGui.QtWidgets.QLabel):
+        if isinstance(object,QtWidgets.QLabel):
             value = object.text()
-        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+        if isinstance(object,QtWidgets.QSpinBox):
             value = object.value()
-        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+        if isinstance (object,QtWidgets.QDoubleSpinBox):
             value = object.value()
         return value
 

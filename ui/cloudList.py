@@ -18,6 +18,7 @@ class CloudlistUi(QtWidgets.QMainWindow):
         uic.loadUi('cloud_list.ui', self)  # Load the .ui file
         self.user_id = user_id
         self.is_admin = is_admin
+
         print(user_id)
         self.back = self.findChild(QtWidgets.QPushButton, 'pb_back')
         self.back.clicked.connect(self.backButtonPressed)
@@ -42,7 +43,8 @@ class CloudlistUi(QtWidgets.QMainWindow):
         # pass ids to the other page
         from ui.create_cloud import CreateCloudUi
         row = self.cloudlist.currentItem().row()
-        self.OtherWindow = CreateCloudUi(cloud_id=self.cloudlist.item(row, 5).text(),user_id=self.user_id)
+        self.OtherWindow = CreateCloudUi(cloud_id=self.cloudlist.item(row, 5).text(),user_id=self.user_id
+                                        ,is_admin = self.is_admin)
         self.OtherWindow.show()
         self.close()
 
@@ -64,7 +66,7 @@ class CloudlistUi(QtWidgets.QMainWindow):
     def newCloudButtonPressed(self):
         # pass ids to the other page
         from ui.create_cloud import CreateCloudUi
-        self.OtherWindow = CreateCloudUi(user_id=self.user_id)
+        self.OtherWindow = CreateCloudUi(user_id=self.user_id,is_admin = self.is_admin)
         self.OtherWindow.show()
         self.close()
 
@@ -90,17 +92,17 @@ class CloudlistUi(QtWidgets.QMainWindow):
         count += 1
     
     def get_value(object):
-        if isinstance(object, QtGui.QtWidgets.QComboBox):
+        if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
-        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+        if isinstance( object, QtWidgets.QTextEdit):
             value = object.toPlainText()
-        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+        if isinstance(object,QtWidgets.QTextBrowser):
             value = object.toPlainText()
-        if isinstance(object, QtGui.QtWidgets.QLabel):
+        if isinstance(object, QtWidgets.QLabel):
             value = object.text()
-        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+        if isinstance(object, QtWidgets.QSpinBox):
             value = object.value()
-        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+        if isinstance (object,QtWidgets.QDoubleSpinBox):
             value = object.value()
         return value
 

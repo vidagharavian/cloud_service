@@ -8,12 +8,15 @@ from cloud_management import get_oses, get_os_versions, get_cloud, get_os_versio
 
 
 class CreateCloudUi(QtWidgets.QMainWindow):
-    def __init__(self, cloud_id: int = None, user_id: int = None):
+    def __init__(self, cloud_id: int = None, user_id: int = None,is_admin:bool=False):
         super(CreateCloudUi, self).__init__()  # Call the inherited classes __init__ method
         self.default_os_id = 0
         uic.loadUi('create_cloud.ui', self)  # Load the .ui file
+
         self.cloud_id = cloud_id
         self.user_id = user_id
+        self.is_admin = is_admin
+
         self.os_type = self.findChild(QtWidgets.QComboBox, 'os_type')
         self.layout = QtWidgets.QVBoxLayout(self)
         self.set_defaults()
@@ -58,17 +61,7 @@ class CreateCloudUi(QtWidgets.QMainWindow):
             self.createCloud.setVisible(False)
             self.status.setVisible(True)
             self.status_label.setVisible(True)
-        self.status = self.findChild(QtWidgets.QComboBox, 'status')
-        self.status.addItem("Active", [1])
-        self.status.addItem("Inactive", [0])
-        if cloud_id is None:
-            self.update_cloud.setVisible(False)
-            self.createCloud.setVisible(True)
-            self.status.setVisible(False)
-        else:
-            self.update_cloud.setVisible(True)
-            self.createCloud.setVisible(False)
-            self.status.setVisible(True)
+
 
     # todo if press caclulate button calculate total cost and show it in total_cost QTextBrowser
     def set_defaults(self):
@@ -124,24 +117,15 @@ class CreateCloudUi(QtWidgets.QMainWindow):
         update_cloud(int(os_version), self.user_id, self.cloud_name.toPlainText(), self.cpu.value(), self.disk.value()
                      , self.ram.value(), self.bandwidth.value(),self.core.value(),status,self.cloud_id)
         from ui.cloudList import CloudlistUi
-        self.OtherWindow = CloudlistUi(user_id=self.user_id)
+        self.OtherWindow = CloudlistUi(user_id=self.user_id,is_admin = self.is_admin)
         self.OtherWindow.show()
         self.close()
 
     # todo if press back button back to dashboard.ui or admin_dashboard.ui
     def backButtonPressed(self):
-        # pass parameters to dashboard
-        # then go to dashboard
 
-        # from admin_dashboard import AdminDashboardUi -> set defualt amount for each object
-        # if id= admin
-        # self.OtherWindow = AdminDashboardUi()
-        # self.OtherWindow.show()
-        # self.close()
-
-        # if id=costumer if come from edit button -> set defualt amount for each object
-        from ui.dashboard import DashboardUi
-        self.OtherWindow = DashboardUi(user_id=self.user_id)
+        from ui.cloudList import CloudlistUi
+        self.OtherWindow = CloudlistUi(user_id = self.user_id,is_admin = self.is_admin)
         self.OtherWindow.show()
         self.close()
 
@@ -152,22 +136,22 @@ class CreateCloudUi(QtWidgets.QMainWindow):
         create_cloud(int(data), self.user_id, self.cloud_name.toPlainText(), self.cpu.value(), self.disk.value()
                      , self.ram.value(), self.bandwidth.value())
         from ui.cloudList import CloudlistUi
-        self.OtherWindow = CloudlistUi(user_id=self.user_id)
+        self.OtherWindow = CloudlistUi(user_id = self.user_id,is_admin = self.is_admin)
         self.OtherWindow.show()
         self.close()
 
     def get_value(object):
-        if isinstance(object, QtGui.QtWidgets.QComboBox):
+        if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
-        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+        if isinstance( object,QtWidgets.QTextEdit):
             value = object.toPlainText()
-        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+        if isinstance(object,QtWidgets.QTextBrowser):
             value = object.toPlainText()
-        if isinstance(object, QtGui.QtWidgets.QLabel):
+        if isinstance(object, QtWidgets.QLabel):
             value = object.text()
-        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+        if isinstance(object,QtWidgets.QSpinBox):
             value = object.value()
-        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+        if isinstance (object,QtWidgets.QDoubleSpinBox):
             value = object.value()
         return value
 

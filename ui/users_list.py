@@ -3,7 +3,8 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
-
+users_list = {'First name':'name','Last name':'f_name','Email':'email',
+            'National Number':'national_num','id':'id'}#todo we have password column too
 class UsersListUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(UsersListUi, self).__init__()  # Call the inherited classes __init__ method
@@ -24,13 +25,15 @@ class UsersListUi(QtWidgets.QMainWindow):
     # todo if press edit button then save edit of selected row
     def EditButtonPressed(self):
         # ->> no need to edit_profile.ui because it can edit in widgettable just save changes in table
-
-        pass
+        from ui.edit_profile import EditProfileUi
+        self.OtherWindow = EditProfileUi(User_id = self.user_id,is_admin = True)
+        self.OtherWindow.show()
+        self.close()
 
     # todo if press back button back to admin_dashboard.ui
     def backButtonPressed(self):
         from ui.admin_dashboard import AdminDashboardUi
-        self.OtherWindow = AdminDashboardUi()
+        self.OtherWindow = AdminDashboardUi(User_id = self.user_id)
         self.OtherWindow.show()
         self.close()
 
@@ -39,17 +42,17 @@ class UsersListUi(QtWidgets.QMainWindow):
         pass
 
     def get_value(object):
-        if isinstance(object, QtGui.QtWidgets.QComboBox):
+        if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
-        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+        if isinstance( object,QtWidgets.QTextEdit):
             value = object.toPlainText()
-        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+        if isinstance(object,QtWidgets.QTextBrowser):
             value = object.toPlainText()
-        if isinstance(object, QtGui.QtWidgets.QLabel):
+        if isinstance(object,QtWidgets.QLabel):
             value = object.text()
-        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+        if isinstance(object,QtWidgets.QSpinBox):
             value = object.value()
-        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+        if isinstance (object,QtWidgets.QDoubleSpinBox):
             value = object.value()
         return value
 

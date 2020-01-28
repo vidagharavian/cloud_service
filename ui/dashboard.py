@@ -49,14 +49,14 @@ class DashboardUi(QtWidgets.QMainWindow):
     # todo if editProf pressed then go to edit_prof.ui
     def editProfButtonPressed(self):
         from ui.edit_profile import EditProfileUi
-        self.OtherWindow = EditProfileUi(user_id=self.user_id)
+        self.OtherWindow = EditProfileUi(user_id=self.user_id,is_admin=False)
         self.OtherWindow.show()
         self.close()
 
     # todo if clouds pressed then go to cloud_list.ui
     def cloudsButtonPressed(self):
         from ui.cloudList import CloudlistUi
-        self.OtherWindow = CloudlistUi(user_id=self.user_id)
+        self.OtherWindow = CloudlistUi(user_id=self.user_id,is_admin = False)
         self.OtherWindow.show()
         self.close()
 
@@ -70,27 +70,27 @@ class DashboardUi(QtWidgets.QMainWindow):
     # todo if ssh pressed then go to ssh (create or show ?)
     def sshButtonPressed(self):
         from ui.show_ssh import ShowSSHUi
-        self.OtherWindow = ShowSSHUi()
+        self.OtherWindow = ShowSSHUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
     def makeSSHButtonPressed(self):
         from ui.ssh_make import MakeSSHUi
-        self.OtherWindow = MakeSSHUi()
+        self.OtherWindow = MakeSSHUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
     # todo if tickets pressed then go to make_ticket.ui
     def ticketsButtonPressed(self):
         from ui.ticket_list import TicketListUi
-        self.OtherWindow = TicketListUi()
+        self.OtherWindow = TicketListUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
     # todo if increase pressed then go to inc_wallet.ui
     def increaseButtonPressed(self):
         from ui.increase_wallet import IncreaseCreditUi
-        self.OtherWindow = IncreaseCreditUi()
+        self.OtherWindow = IncreaseCreditUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
@@ -102,17 +102,17 @@ class DashboardUi(QtWidgets.QMainWindow):
         self.close()
 
     def get_value(object):
-        if isinstance(object, QtGui.QtWidgets.QComboBox):
+        if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
-        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+        if isinstance( object,QtWidgets.QTextEdit):
             value = object.toPlainText()
-        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+        if isinstance(object,QtWidgets.QTextBrowser):
             value = object.toPlainText()
-        if isinstance(object, QtGui.QtWidgets.QLabel):
+        if isinstance(object,QtWidgets.QLabel):
             value = object.text()
-        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+        if isinstance(object,QtWidgets.QSpinBox):
             value = object.value()
-        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+        if isinstance (object,QtWidgets.QDoubleSpinBox):
             value = object.value()
         return value
 

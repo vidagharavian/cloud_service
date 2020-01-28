@@ -38,7 +38,7 @@ class ShowSnapshotUi(QtWidgets.QMainWindow):
     # todo if press back button back to dashboard.ui and pass ids to it
     def backButtonPressed(self):
         from ui.dashboard import DashboardUi
-        self.OtherWindow = DashboardUi()
+        self.OtherWindow = DashboardUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
 
@@ -66,6 +66,21 @@ class ShowSnapshotUi(QtWidgets.QMainWindow):
                     if m == snapshot_list[headertext]:
                         self.tableWidget.setItem(count, x, QTableWidgetItem(str(value)))
         count += 1
+    
+    def get_value(object):
+        if isinstance(object,QtWidgets.QComboBox):
+            value = object.itemData(object.currentIndex())
+        if isinstance( object,QtWidgets.QTextEdit):
+            value = object.toPlainText()
+        if isinstance(object,QtWidgets.QTextBrowser):
+            value = object.toPlainText()
+        if isinstance(object,QtWidgets.QLabel):
+            value = object.text()
+        if isinstance(object,QtWidgets.QSpinBox):
+            value = object.value()
+        if isinstance (object,QtWidgets.QDoubleSpinBox):
+            value = object.value()
+        return value
 
 
 def main():
