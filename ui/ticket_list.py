@@ -32,6 +32,21 @@ class TicketListUi(QtWidgets.QMainWindow):
         self.OtherWindow.show()
         self.close()
 
+    def get_value(object):
+        if isinstance(object, QtGui.QtWidgets.QComboBox):
+            value = object.itemData(object.currentIndex())
+        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+            value = object.toPlainText()
+        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+            value = object.toPlainText()
+        if isinstance(object, QtGui.QtWidgets.QLabel):
+            value = object.text()
+        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+            value = object.value()
+        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+            value = object.value()
+        return value
+
 def main():
     app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
     window = TicketListUi() # Create an instance of our class

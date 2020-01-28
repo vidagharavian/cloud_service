@@ -59,7 +59,7 @@ class AdminCloudListUi(QtWidgets.QMainWindow):
     # todo if press back button back to dashboard.ui
     def backButtonPressed(self):
         from ui.admin_dashboard import AdminDashboardUi
-        self.OtherWindow = AdminDashboardUi()
+        self.OtherWindow = AdminDashboardUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
@@ -69,6 +69,20 @@ class AdminCloudListUi(QtWidgets.QMainWindow):
         Model.delete_query(model_name=Cloud, condition=f'where id={self.cloudlist.item(row, 1).text()}')
         self.create_table()
 
+    def get_value(object):
+        if isinstance(object, QtGui.QtWidgets.QComboBox):
+            value = object.itemData(object.currentIndex())
+        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+            value = object.toPlainText()
+        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+            value = object.toPlainText()
+        if isinstance(object, QtGui.QtWidgets.QLabel):
+            value = object.text()
+        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+            value = object.value()
+        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+            value = object.value()
+        return value
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication

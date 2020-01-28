@@ -12,8 +12,8 @@ class MakeSSHUi(QtWidgets.QMainWindow):
         uic.loadUi('ssh_make.ui', self) # Load the .ui file
         self.user_id = user_id
         self.ssh_name = self.findChild(QtWidgets.QTextEdit,'ssh_name')
-        self.public_key = self.findChild(QtWidgets.QTextEdit,'public_key')
-        self.private_key = self.findChild(QtWidgets.QTextEdit,'private_key')
+        self.public_key = self.findChild(QtWidgets.QTextBrowser,'public_key')
+        self.private_key = self.findChild(QtWidgets.QTextBrowser,'private_key')
         self.cloud_list = self.findChild(QtWidgets.QComboBox,'cloud_list')
         keys=get_public_private_key()
         self.back = self.findChild(QtWidgets.QPushButton,'back')
@@ -38,6 +38,21 @@ class MakeSSHUi(QtWidgets.QMainWindow):
         self.OtherWindow = DashboardUi()
         self.OtherWindow.show()
         self.close()
+
+    def get_value(object):
+        if isinstance(object, QtGui.QtWidgets.QComboBox):
+            value = object.itemData(object.currentIndex())
+        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+            value = object.toPlainText()
+        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+            value = object.toPlainText()
+        if isinstance(object, QtGui.QtWidgets.QLabel):
+            value = object.text()
+        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+            value = object.value()
+        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+            value = object.value()
+        return value
 
 def main():
     app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication

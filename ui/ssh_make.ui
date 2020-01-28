@@ -43,22 +43,6 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#828282;&quot;&gt;SSH-private-key:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="private_key">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>570</y>
-      <width>381</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 12px;
-border:2px outset;
-border-color: rgb(130, 130, 130);</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
@@ -138,22 +122,6 @@ QPushButton:hover
      <string>Back</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="public_key">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>380</y>
-      <width>381</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 12px;
-border:2px outset;
-border-color: rgb(130, 130, 130);</string>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="ssh_name">
     <property name="geometry">
      <rect>
@@ -209,6 +177,38 @@ border-color: rgb(130, 130, 130);</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#828282;&quot;&gt;Cloud Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="public_key_2">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>380</y>
+      <width>381</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 12px;
+border:2px outset;
+border-color: rgb(130, 130, 130);</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="private_key_2">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>560</y>
+      <width>381</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 12px;
+border:2px outset;
+border-color: rgb(130, 130, 130);</string>
     </property>
    </widget>
   </widget>

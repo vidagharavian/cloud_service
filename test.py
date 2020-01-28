@@ -19,20 +19,6 @@ print(str(public_key)+'\n')
 print(str(private_key))
 print('maryam')
 
-def get_value(object):
-    if isinstance(object, QtGui.QtWidgets.QComboBox):
-        value = object.itemData(object.currentIndex())
-    if isinstance( object, QtGui.QtWidgets.QTextEdit):
-        value = object.toPlainText()
-    if isinstance(object,QtGui.QtWidgets.QTextBrowser):
-        value = object.toPlainText()
-    if isinstance(object, QtGui.QtWidgets.QLabel):
-        value = object.text()
-    if isinstance(object, QtGui.QtWidgets.QSpinBox):
-        value = object.value()
-    if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
-        value = object.value()
-    return value
 
 self.cpu = QtGui.QtWidgets.QSpinBox()
 self.cpu.setValue(11)

@@ -29,14 +29,14 @@ class AdminDashboardUi(QtWidgets.QMainWindow):
     #todo if editProf pressed then go to users_list.ui and send ids
     def UsersButtonPressed(self):
         from ui.users_list import UsersListUi
-        self.OtherWindow = UsersListUi()
+        self.OtherWindow = UsersListUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
     
     #todo if clouds pressed then go to cloud_list.ui
     def cloudsButtonPressed(self):
         from ui.admin_cloud_list import AdminCloudListUi
-        self.OtherWindow = AdminCloudListUi()
+        self.OtherWindow = AdminCloudListUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
     #todo if snapshot pressed then go to show_image.ui
@@ -56,7 +56,7 @@ class AdminDashboardUi(QtWidgets.QMainWindow):
     #todo if tickets pressed then go to make_ticket.ui
     def ticketsButtonPressed(self):
         from ui.ticket_list_admin import AdminTicketListUi
-        self.OtherWindow = AdminTicketListUi()
+        self.OtherWindow = AdminTicketListUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
 
@@ -66,6 +66,21 @@ class AdminDashboardUi(QtWidgets.QMainWindow):
         self.OtherWindow = LoginUi()
         self.OtherWindow.show()
         self.close()
+
+    def get_value(object):
+        if isinstance(object, QtGui.QtWidgets.QComboBox):
+            value = object.itemData(object.currentIndex())
+        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+            value = object.toPlainText()
+        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+            value = object.toPlainText()
+        if isinstance(object, QtGui.QtWidgets.QLabel):
+            value = object.text()
+        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+            value = object.value()
+        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+            value = object.value()
+        return value
 
 def main():
     app = QtWidgets.QApplication(sys.argv) #Create an instance of QtWidgets.QApplication

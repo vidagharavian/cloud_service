@@ -34,8 +34,27 @@ class CreateTicketUi(QtWidgets.QMainWindow):
         self.OtherWindow = DashboardUi()
         self.OtherWindow.show()
         self.close()
+
+    def get_value(object):
+        if isinstance(object, QtGui.QtWidgets.QComboBox):
+            value = object.itemData(object.currentIndex())
+        if isinstance( object, QtGui.QtWidgets.QTextEdit):
+            value = object.toPlainText()
+        if isinstance(object,QtGui.QtWidgets.QTextBrowser):
+            value = object.toPlainText()
+        if isinstance(object, QtGui.QtWidgets.QLabel):
+            value = object.text()
+        if isinstance(object, QtGui.QtWidgets.QSpinBox):
+            value = object.value()
+        if isinstance (object,QtGui.QtWidgets.QDoubleSpinBox):
+            value = object.value()
+        return value
+
 def main():
     app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
     window = CreateTicketUi() # Create an instance of our class
     window.show()
     sys.exit(app.exec_()) # Start the application
+
+if __name__ == "__main__":
+    main()
