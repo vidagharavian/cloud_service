@@ -24,11 +24,17 @@ class SignUpUi(QtWidgets.QMainWindow):
 
     #todo if press back button back to login page
     def backButtonPressed(self):
-        pass
+        from ui.loginui import LoginUi
+        self.OtherWindow = LoginUi()
+        self.OtherWindow.show()
+        self.close()
 
     #todo if press signup button go to dashboard page
     def signupButtonPressed(self):
-        pass
+        from ui.dashboard import DashboardUi
+        self.OtherWindow = DashboardUi()
+        self.OtherWindow.show()
+        self.close()
 
 app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
 window = SignUpUi() # Create an instance of our class
