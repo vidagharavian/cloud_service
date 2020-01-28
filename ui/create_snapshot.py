@@ -14,6 +14,7 @@ class CreateSnapshotUi(QtWidgets.QMainWindow):
 
         self.select_cloud = self.findChild(QtWidgets.QComboBox, 'select_cloud')
         self.image_name = self.findChild(QtWidgets.QTextEdit, 'image_name')
+        self.set_cloud()
 
         self.back = self.findChild(QtWidgets.QPushButton, 'back')
         self.back.clicked.connect(self.backButtonPressed)
