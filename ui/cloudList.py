@@ -17,6 +17,7 @@ class CloudlistUi(QtWidgets.QMainWindow):
         super(CloudlistUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('cloud_list.ui', self)  # Load the .ui file
         self.user_id = user_id
+        print(user_id)
         self.back = self.findChild(QtWidgets.QPushButton, 'pb_back')
         self.back.clicked.connect(self.backButtonPressed)
 
@@ -38,8 +39,10 @@ class CloudlistUi(QtWidgets.QMainWindow):
     def editButtonPressed(self):
         # set base amounts of each object
         # pass ids to the other page
+
         from ui.create_cloud import CreateCloudUi
-        self.OtherWindow = CreateCloudUi()
+        row = self.cloudlist.currentItem().row()
+        self.OtherWindow = CreateCloudUi(cloud_id=self.cloudlist.item(row, 1).text())
         self.OtherWindow.show()
         self.close()
 
@@ -55,7 +58,7 @@ class CloudlistUi(QtWidgets.QMainWindow):
     def newCloudButtonPressed(self):
         # pass ids to the other page
         from ui.create_cloud import CreateCloudUi
-        self.OtherWindow = CreateCloudUi()
+        self.OtherWindow = CreateCloudUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
