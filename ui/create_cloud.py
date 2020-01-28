@@ -7,7 +7,7 @@ from cloud_management import get_oses, get_os_versions, get_cloud, get_os_versio
 
 
 class CreateCloudUi(QtWidgets.QMainWindow):
-    def __init__(self, cloud_id: int = None):
+    def __init__(self, cloud_id: int = None , user_id:int=None):
         super(CreateCloudUi, self).__init__()  # Call the inherited classes __init__ method
         self.default_os_id=0
         uic.loadUi('create_cloud.ui', self)  # Load the .ui file
