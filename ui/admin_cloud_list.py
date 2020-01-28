@@ -29,8 +29,7 @@ class AdminCloudListUi(QtWidgets.QMainWindow):
         self.deleteCloud.clicked.connect(self.deleteButtonPressed)
 
         self.cloudlist = self.findChild(QtWidgets.QTableWidget, 'tableWidget')
-        self.cloudlist.setColumnHidden(1, True)# column 1is cloud id
-        self.cloudlist.setColumnHidden(0, True)
+        self.cloudlist.setColumnHidden(0, True)# column 0 is cloud id
         self.create_table()
 #todo: no need for user_id
     def create_table(self):

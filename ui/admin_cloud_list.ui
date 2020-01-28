@@ -111,7 +111,7 @@ QPushButton:hover
     <rect>
      <x>150</x>
      <y>70</y>
-     <width>721</width>
+     <width>701</width>
      <height>601</height>
     </rect>
    </property>
@@ -126,11 +126,6 @@ QPushButton:hover
    </attribute>
    <column>
     <property name="text">
-     <string>User id</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
      <string>Cloud id</string>
     </property>
    </column>
@@ -141,32 +136,12 @@ QPushButton:hover
    </column>
    <column>
     <property name="text">
-     <string>IP address</string>
+     <string>Firstname</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>New Column</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>CPU</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>CORE</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>DISK</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>RAM</string>
+     <string>Lastname</string>
     </property>
    </column>
    <column>
