@@ -1,5 +1,8 @@
+import datetime
+
 from asn1crypto._ffi import null
 
+from athentication import hash_password
 from models import Model
 
 UserTable = "Customer"
@@ -81,12 +84,30 @@ def get_os_versions(os_id):
 
 
 def do_transaction(amount, wallet_id):
-    def update_wallet():
-        pass
+    Model.insert_query(model_name='Transaction', input_array={'amount': amount, 'wallet_id': wallet_id})
 
 
-def get_user_wallet(user_id):
-    pass
+def get_wallet(user_id):
+    clouds = get_user_clouds(user_id=user_id)
+    if len(clouds) == 0:
+        return Model.select_query(model_name='Wallet', condition=f'where user_id={user_id}')
+    else:
+        wallet = Model.select_query(model_name='Wallet', condition=f'where user_id={user_id}')
+        wallet_id = int(wallet[0]['id'])
+        transactions = Model.select_query(model_name='Transaction', condition=f'where wallet_id={wallet_id}')
+        if len(transactions) == 0:
+            amount = 0
+            for cloud in clouds:
+                amount = amount + cloud['cost_per_day']
+            do_transaction(amount, wallet_id)
+            return wallet
+        now = datetime.date.today()
+        if now > transactions[len(transactions) - 1]['date_created']:
+            amount = 0
+            for cloud in clouds:
+                amount = amount + cloud['cost_per_day']
+            do_transaction(amount, wallet_id)
+            return wallet
 
 
 def get_cloud(cloud_id):
@@ -109,5 +130,15 @@ def get_os_version(os_version: int):
 def get_os(os_id):
     return Model.select_query(model_name='OS', condition=f'where id={os_id}')
 
-def calculate_price(core,cpu,ram,storage,bandwidth):
-    return core*cpu*5000+ram*4000+storage*2000+bandwidth*1000
+
+def calculate_price(core, cpu, ram, storage, bandwidth):
+    return core * cpu * 5000 + ram * 4000 + storage * 2000 + bandwidth * 1000
+
+
+def edit_profile(first_name, last_name, email, national_num, user_id: int, password=None):
+    if password is not None:
+        hashed_password = hash_password(password)
+    Model.update_query(model_name=UserTable, input_array={'name': first_name, 'f_name': last_name, 'email': email,
+                                                          'hashd_password': hashed_password,
+                                                          'national_num': national_num},
+                       condition=f'where id={user_id}')
