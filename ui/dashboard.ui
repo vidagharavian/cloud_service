@@ -266,7 +266,7 @@ border-radius:20px;</string>
       <height>781</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0,0,0">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0,0">
      <property name="spacing">
       <number>0</number>
      </property>
@@ -440,25 +440,7 @@ background-color: rgb(254, 235, 255);</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="bt_reports">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="sizeIncrement">
-        <size>
-         <width>10</width>
-         <height>10</height>
-        </size>
-       </property>
-       <property name="baseSize">
-        <size>
-         <width>100</width>
-         <height>0</height>
-        </size>
-       </property>
+      <widget class="QPushButton" name="bt_tickets">
        <property name="font">
         <font>
          <pointsize>15</pointsize>
@@ -470,25 +452,6 @@ background-color: rgb(254, 235, 255);</string>
         <string notr="true">background-color: rgb(241, 209, 214);
 border: 0px;
 color: rgb(130, 130, 130);</string>
-       </property>
-       <property name="text">
-        <string>Reports</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="bt_tickets">
-       <property name="font">
-        <font>
-         <pointsize>15</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(130, 130, 130);
-border: 0px;
-background-color: rgb(254, 235, 255);</string>
        </property>
        <property name="text">
         <string>Tickets</string>
@@ -503,9 +466,9 @@ background-color: rgb(254, 235, 255);</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(241, 209, 214);
+        <string notr="true">color: rgb(130, 130, 130);
 border: 0px;
-color: rgb(130, 130, 130);</string>
+background-color: rgb(254, 235, 255);</string>
        </property>
        <property name="text">
         <string>Increase Wallet</string>
@@ -527,9 +490,9 @@ color: rgb(130, 130, 130);</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(130, 130, 130);
+        <string notr="true">background-color: rgb(241, 209, 214);
 border: 0px;
-background-color: rgb(254, 235, 255);</string>
+color: rgb(130, 130, 130);</string>
        </property>
        <property name="text">
         <string/>

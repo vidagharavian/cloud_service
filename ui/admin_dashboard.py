@@ -13,16 +13,7 @@ class AdminDashboardUi(QtWidgets.QMainWindow):
 
         self.clouds = self.findChild(QtWidgets.QPushButton,'bt_cloud')
         self.clouds.clicked.connect(self.cloudsButtonPressed)
-
-        self.snapshot = self.findChild(QtWidgets.QPushButton,'bt_snapshot')
-        self.snapshot.clicked.connect(self.snapshotButtonPressed)
-
-        self.ssh_keys = self.findChild(QtWidgets.QPushButton,'bt_ssh')
-        self.ssh_keys.clicked.connect(self.sshButtonPressed)
-
-        self.report = self.findChild(QtWidgets.QPushButton,'bt_reports') 
-        self.report.clicked.connect(self.reportsButtonPressed)
-
+        
         self.ticket = self.findChild(QtWidgets.QPushButton,'bt_tickets') 
         self.ticket.clicked.connect(self.ticketsButtonPressed)
 
@@ -48,22 +39,19 @@ class AdminDashboardUi(QtWidgets.QMainWindow):
         self.OtherWindow.show()
         self.close()
     #todo if snapshot pressed then go to show_image.ui
-    def snapshotButtonPressed(self):
-        from ui.snapshot_list_admin import AdminSnapshotListUi
-        self.OtherWindow = AdminSnapshotListUi()
-        self.OtherWindow.show()
-        self.close()
-    #todo if ssh pressed then go to ssh (create or show ?)
-    def sshButtonPressed(self):
-        from ui.show_ssh import ShowSSHUi
-        self.OtherWindow = ShowSSHUi()
-        self.OtherWindow.show()
-        self.close()
+    # def snapshotButtonPressed(self):
+    #     from ui.snapshot_list_admin import AdminSnapshotListUi
+    #     self.OtherWindow = AdminSnapshotListUi()
+    #     self.OtherWindow.show()
+    #     self.close()
+    # #todo if ssh pressed then go to ssh (create or show ?)
+    # def sshButtonPressed(self):
+    #     from ui.show_ssh import ShowSSHUi
+    #     self.OtherWindow = ShowSSHUi()
+    #     self.OtherWindow.show()
+    #     self.close()
 
 
-    #todo reports not used :)
-    def reportsButtonPressed(self):
-        pass
     #todo if tickets pressed then go to make_ticket.ui
     def ticketsButtonPressed(self):
         from ui.ticket_list_admin import AdminTicketListUi

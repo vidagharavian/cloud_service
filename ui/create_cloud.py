@@ -40,6 +40,21 @@ class CreateCloudUi(QtWidgets.QMainWindow):
         self.calculate_cost = self.findChild(QtWidgets.QPushButton, 'calculate')
         self.calculate_cost.clicked.connect(self.calculateButtonPressed)
 
+        self.update_cloud = self.findChild(QtWidgets.QPushButton,'update')
+        self.update_cloud.clicked.connect(self.updateButtonPressed)
+
+        self.status = self.findChild(QtWidgets.QPushButton,'status')
+        self.status.addItem("Active",[1])
+        self.status.addItem("Inactive",[0])
+        if cloud_id is None:
+            update_cloud.setVisible(False)
+            create_cloud.setVisible(True)
+            status.setVisible(False)
+        else:
+            update_cloud.setVisible(True)
+            create_cloud.setVisible(False)
+            status.setVisible(True)
+
     # todo if press caclulate button calculate total cost and show it in total_cost QTextBrowser
     def set_defaults(self):
         if self.cloud_id is None:
@@ -83,10 +98,10 @@ class CreateCloudUi(QtWidgets.QMainWindow):
 
     def calculateButtonPressed(self):
         # calculate cost and show it to customer
-        self.cost.setText(str(calculate_price(self.core.value(), self.cpu.value(), self.ram.value(), self.disk.value(),
-                                          self.bandwidth.value())))
-
-
+        self.cost.setText(str(calculate_price(self.core.value(), self.cpu.value(), self.ram.value(), self.disk.value(),self.bandwidth.value())))
+    #todo first check cost<wallet and then update cloud and then go to cloud_list
+    def updateButtonPressed(self):
+        pass
     # todo if press back button back to dashboard.ui or admin_dashboard.ui
     def backButtonPressed(self):
         # pass parameters to dashboard

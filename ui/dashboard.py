@@ -22,9 +22,6 @@ class DashboardUi(QtWidgets.QMainWindow):
         self.make_ssh = self.findChild(QtWidgets.QPushButton,'make_ssh')
         self.make_ssh.clicked.connect(self.makeSSHButtonPressed)
 
-        self.report = self.findChild(QtWidgets.QPushButton,'bt_reports') 
-        self.report.clicked.connect(self.reportsButtonPressed)
-
         self.ticket = self.findChild(QtWidgets.QPushButton,'bt_tickets') 
         self.ticket.clicked.connect(self.ticketsButtonPressed)
 
@@ -70,9 +67,7 @@ class DashboardUi(QtWidgets.QMainWindow):
         self.OtherWindow = MakeSSHUi()
         self.OtherWindow.show()
         self.close()
-    #todo reports not used :)
-    def reportsButtonPressed(self):
-        pass
+
     #todo if tickets pressed then go to make_ticket.ui
     def ticketsButtonPressed(self):
         from ui.ticket_list import TicketListUi
