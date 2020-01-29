@@ -47,8 +47,12 @@ class EditProfileUi(QtWidgets.QMainWindow):
     def editButtonPressed(self):
         # first update profile then go to dashboard
         # from admin_dashboard import AdminDashboardUi
-        edit_profile(self.first_name.toPlainText(), self.last_name.toPlainText(), self.email.toPlainText(),
-                     int(self.national_num.toPlainText()), self.user_id, self.password.toPlainText())
+        if self.password.toPlainText()!='':
+            edit_profile(self.first_name.toPlainText(), self.last_name.toPlainText(), self.email.toPlainText(),
+                         int(self.national_num.toPlainText()), self.user_id, self.password.toPlainText())
+        else:
+            edit_profile(self.first_name.toPlainText(), self.last_name.toPlainText(), self.email.toPlainText(),
+                         int(self.national_num.toPlainText()), self.user_id)
 
         if self.is_admin:
             from ui.admin_dashboard import AdminDashboardUi
@@ -78,7 +82,7 @@ class EditProfileUi(QtWidgets.QMainWindow):
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
-    window = EditProfileUi()  # Create an instance of our class
+    window = EditProfileUi(19)  # Create an instance of our class
     window.show()
     sys.exit(app.exec_())  # Start the application
 

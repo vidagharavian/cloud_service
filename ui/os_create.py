@@ -29,7 +29,7 @@ class CreateOS(QtWidgets.QMainWindow):
 
     #todo if press back button back to dashboard
     def backButtonPressed(self):
-        from os_list import OSList
+        from ui.os_list import OSList
         self.OtherWindow = OSList(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()

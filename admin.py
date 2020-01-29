@@ -3,7 +3,7 @@ from models import Model
 
 
 def get_customers():
-    return Model.select_query(model_name=UserTable, out_put_array=['id'])
+    return Model.select_query(model_name=UserTable)
 
 
 def get_clouds():

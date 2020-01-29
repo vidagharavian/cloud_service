@@ -17,23 +17,36 @@ def sign_up(first_name: str, last_name: str, national_num: int, email, password:
     return sign_in(email=email, password=password)
 
 
-def sign_in(email: str, password: str) -> dict:
-    from cloud_management import CustomerInfo, UserTable
+def sign_in(email: str, password: str, is_admin=False) -> dict:
+    from cloud_management import CustomerInfo, UserTable, AdminTable
     select_query = 'select * from public."%s"' + " where %s=%s"
-    cur.execute(select_query, (AsIs(UserTable), AsIs('email'), email))
+    if is_admin:
+        cur.execute(select_query, (AsIs(AdminTable), AsIs('email'), email))
+    else:
+        cur.execute(select_query, (AsIs(UserTable), AsIs('email'), email))
     rows = cur.fetchall()
     if len(rows) != 0:
-        boolean = verify_password(rows[0][4], password)
+        if not is_admin:
+            boolean = verify_password(rows[0][4], password)
+        else:
+            boolean = verify_password(rows[0][2], password)
         if boolean:
             select_query = 'select * from public."%s"' + " where %s=%s"
-            cur.execute(select_query, (AsIs(CustomerInfo), AsIs('email'), email))
-            for row in rows:
+            if not is_admin:
+                cur.execute(select_query, (AsIs(CustomerInfo), AsIs('email'), email))
+                rows = cur.fetchall()
+                for row in rows:
+                    return {
+                        "customer_id": row[0],
+                        "first_name": row[1],
+                        "last_name": row[2],
+                        "wallet_amount": row[3],
+                        "email": row[4]
+                    }
+            else:
                 return {
-                    "customer_id": row[0],
-                    "first_name": row[1],
-                    "last_name": row[2],
-                    "wallet_amount": row[3],
-                    "email": row[4]
+                    "id": rows[0][0],
+                    "email": rows[0][0],
                 }
 
 

@@ -21,14 +21,14 @@ class OSList(QtWidgets.QMainWindow):
 
     #todo if press back button back to dashboard
     def backButtonPressed(self):
-        from admin_dashboard import AdminDashboardUi
+        from ui.admin_dashboard import AdminDashboardUi
         self.OtherWindow = AdminDashboardUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
     #todo if press submit button go to dashboard and save public_key and name for the cloud
     def newOSButtonPressed(self):
         #first add this os then go to dashboard
-        from os_create import CreateOS
+        from ui.os_create import CreateOS
         self.OtherWindow = CreateOS(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
