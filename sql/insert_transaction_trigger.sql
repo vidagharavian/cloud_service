@@ -1,4 +1,4 @@
-CREATE TRIGGER insert_transaction()
+CREATE TRIGGER insert_transaction_trigger
   after insert
   ON public."Cloud"
   FOR EACH ROW 

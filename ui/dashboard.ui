@@ -266,7 +266,7 @@ border-radius:20px;</string>
       <height>781</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0,0">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0">
      <property name="spacing">
       <number>0</number>
      </property>
@@ -423,23 +423,6 @@ color: rgb(130, 130, 130);</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="make_ssh">
-       <property name="font">
-        <font>
-         <pointsize>15</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(130, 130, 130);
-border: 0px;
-background-color: rgb(254, 235, 255);</string>
-       </property>
-       <property name="text">
-        <string>Make SSH Key</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="bt_tickets">
        <property name="font">
         <font>
@@ -449,9 +432,9 @@ background-color: rgb(254, 235, 255);</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(241, 209, 214);
+        <string notr="true">color: rgb(130, 130, 130);
 border: 0px;
-color: rgb(130, 130, 130);</string>
+background-color: rgb(254, 235, 255);</string>
        </property>
        <property name="text">
         <string>Tickets</string>
@@ -466,9 +449,9 @@ color: rgb(130, 130, 130);</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(130, 130, 130);
+        <string notr="true">background-color: rgb(241, 209, 214);
 border: 0px;
-background-color: rgb(254, 235, 255);</string>
+color: rgb(130, 130, 130);</string>
        </property>
        <property name="text">
         <string>Increase Wallet</string>
@@ -490,9 +473,9 @@ background-color: rgb(254, 235, 255);</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(241, 209, 214);
+        <string notr="true">color: rgb(130, 130, 130);
 border: 0px;
-color: rgb(130, 130, 130);</string>
+background-color: rgb(254, 235, 255);</string>
        </property>
        <property name="text">
         <string/>

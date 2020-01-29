@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION delete_cloud
+CREATE OR REPLACE FUNCTION delete_cloud()
   RETURNS trigger AS
 $BODY$
 BEGIN

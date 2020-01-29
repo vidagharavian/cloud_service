@@ -3,7 +3,7 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
-snapshot_list_manager = {'User id': 'user_id','Cloud id': 'cloud_id', 'Cloud name': 'host_name', 
+snapshot_list_admin = {'User id': 'user_id','Cloud id': 'cloud_id', 'Cloud name': 'host_name', 
                 'Date creation':'date_created', 'Cloud status': 'status',
                 'minimum CPU': 'cpu_amount', 'minimum core': 'core_amount',
                 'minimum disk': 'disk_amount', ' minimum RAM': 'ram_amount', 'Bound width': 'band_width'}
