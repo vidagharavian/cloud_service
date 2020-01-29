@@ -23,10 +23,15 @@ def get_user_clouds(user_id: int) -> dict:
                               condition=f'where user_id={user_id}')
 
 
+<<<<<<< HEAD
+def create_cloud(os_version_id: int, user_id: int, host_name: str, cpu_amount, disk_amount: float,            ram_amount: float,band_width: float, core_amount: int):
+    cost_per_day = calculate_price(core=core_amount, cpu=cpu_amount, storage=disk_amount, bandwidth=band_width,ram=ram_amount)
+=======
 def create_cloud(os_version_id: int, user_id: int, host_name: str, cpu_amount, disk_amount: float, ram_amount: float,
                  band_width: float, core_amount: int):
     cost_per_day = calculate_price(core=core_amount, cpu=cpu_amount, storage=disk_amount, bandwidth=band_width,
                                    ram=ram_amount)
+>>>>>>> 91058be1a342e6a0842666b41145a31705e85d60
     Model.insert_query(model_name=Cloud,
                        input_array={'user_id': user_id, 'host_name': host_name, 'cpu_amount': cpu_amount,
                                     'disk_amount': disk_amount, 'ram_amount': ram_amount, 'band_width': band_width,

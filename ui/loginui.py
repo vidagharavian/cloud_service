@@ -21,6 +21,8 @@ class LoginUi(QtWidgets.QMainWindow):
             self.signupButtonPressed)  # Remember to pass the definition/method, not the return value!
         self.email = self.findChild(QtWidgets.QTextEdit, 'te_username')  # Find the textEdit
         self.password = self.findChild(QtWidgets.QTextEdit, 'te_password')  # Find the textEdit
+        self.check_admin = self.findChild(QtWidgets.QCheckBox, 'is_admin')
+
 
         self.show()  # Show the GUI
 
