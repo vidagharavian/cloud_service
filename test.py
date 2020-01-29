@@ -20,10 +20,6 @@ print(str(private_key))
 print('maryam')
 
 
-self.cpu = QtGui.QtWidgets.QSpinBox()
-self.cpu.setValue(11)
-get_value(cpu)
-=======
 # from cryptography.hazmat.primitives import serialization as crypto_serialization
 # from cryptography.hazmat.primitives.asymmetric import rsa
 # from cryptography.hazmat.backends import default_backend as crypto_default_backend

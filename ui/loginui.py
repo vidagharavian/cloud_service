@@ -30,12 +30,20 @@ class LoginUi(QtWidgets.QMainWindow):
     def loginButtonPressed(self):
         # This is executed when the button is pressed
         print('loginButtonPressed')
-        user =sign_in(self.email.toPlainText(), self.password.toPlainText())
-        from ui.dashboard import DashboardUi
-        if user is not None:
-            self.OtherWindow = DashboardUi(user['customer_id'])
-            self.OtherWindow.show()
-            self.close()
+        if self.get_value(self.check_admin):
+            admin=sign_in(self.email.toPlainText(), self.password.toPlainText(),True)
+            from ui.admin_dashboard import AdminDashboardUi
+            if admin is not None:
+                self.OtherWindow = AdminDashboardUi(admin['id'])
+                self.OtherWindow.show()
+                self.close()
+        else:
+            user =sign_in(self.email.toPlainText(), self.password.toPlainText())
+            from ui.dashboard import DashboardUi
+            if user is not None:
+                self.OtherWindow = DashboardUi(user['customer_id'])
+                self.OtherWindow.show()
+                self.close()
 
     # todo if press signup button go to signup page
     def signupButtonPressed(self):
@@ -45,7 +53,7 @@ class LoginUi(QtWidgets.QMainWindow):
         self.close()
         # This is executed when the button is pressed
         print('signiupButtonPressed')
-
+    @staticmethod
     def get_value(object):
         if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
@@ -59,6 +67,8 @@ class LoginUi(QtWidgets.QMainWindow):
             value = object.value()
         if isinstance (object,QtWidgets.QDoubleSpinBox):
             value = object.value()
+        if isinstance(object,QtWidgets.QCheckBox):
+            value=object.isChecked()
         return value
 
 

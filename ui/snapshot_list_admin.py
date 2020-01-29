@@ -31,7 +31,7 @@ class AdminSnapshotListUi(QtWidgets.QMainWindow):
 
     #todo if press back button back to dashboard.ui
     def backButtonPressed(self):
-        from admin_dashboard import AdminDashboardUi
+        from ui.admin_dashboard import AdminDashboardUi
         self.OtherWindow = AdminDashboardUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()

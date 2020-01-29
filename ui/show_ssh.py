@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QTableWidgetItem
 
 from cloud_management import get_user_ssh, delete_ssh
 
-sshlist = {'Name': 'name', 'Public key': 'public_key', 'Cloud': 'host_name', 'id': 'id', 'Action': 'cloud_id'}
+sshlist = {'Name': 'name', 'Public Key': 'public_key', 'Cloud': 'cloud_name', 'id': 'id', 'Action': 'cloud_id'}
 
 
 class ShowSSHUi(QtWidgets.QMainWindow):

@@ -3,8 +3,13 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
+from PyQt5.QtWidgets import QTableWidgetItem
+
+from admin import get_customers
+from cloud_management import delete_user
+
 users_list = {'First name':'name','Last name':'f_name','Email':'email',
-            'National Number':'national_num','id':'id'}#todo we have password column too
+            'National Number':'national_num','id':'id','Password':'password'}#todo we have password column too
 class UsersListUi(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None):
         super(UsersListUi, self).__init__()  # Call the inherited classes __init__ method
@@ -13,33 +18,41 @@ class UsersListUi(QtWidgets.QMainWindow):
         self.back = self.findChild(QtWidgets.QPushButton, 'pb_back')
         self.back.clicked.connect(self.backButtonPressed)
 
-        self.editUser = self.findChild(QtWidgets.QPushButton, 'edit')
-        self.editUser.clicked.connect(self.EditButtonPressed)
 
         self.deleteUser = self.findChild(QtWidgets.QPushButton, 'delete_2')
         self.deleteUser.clicked.connect(self.deleteButtonPressed)
 
         self.userlist = self.findChild(QtWidgets.QTableWidget, 'tableWidget')
         self.userlist.setColumnHidden(5, True)  # column 4 is id
+        self.set_table()
+    def set_table(self):
+        users = get_customers()
+        self.userlist.setRowCount(len(users))
+        count = 0
+        for user in users:
+            for key, value in user.items():
+                headercount = self.userlist.columnCount()
+                m = key
+                for x in range(0, headercount, 1):
+                    headertext = self.userlist.horizontalHeaderItem(x).text()
+                    if m == users_list[headertext]:
+                        self.tableWidget.setItem(count, x, QTableWidgetItem(str(value)))
+            count += 1
 
-    # todo if press edit button then save edit of selected row
-    def EditButtonPressed(self):
-        # ->> no need to edit_profile.ui because it can edit in widgettable just save changes in table
-        from ui.edit_profile import EditProfileUi
-        self.OtherWindow = EditProfileUi(User_id = self.user_id,is_admin = True)
-        self.OtherWindow.show()
-        self.close()
+
 
     # todo if press back button back to admin_dashboard.ui
     def backButtonPressed(self):
         from ui.admin_dashboard import AdminDashboardUi
-        self.OtherWindow = AdminDashboardUi(User_id = self.user_id)
+        self.OtherWindow = AdminDashboardUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
 
     # todo if press delete button then delete row and update table
     def deleteButtonPressed(self):
-        pass
+        row = self.userlist.currentItem().row()
+        delete_user(int(self.userlist.item(row,5).text()))
+        self.set_table()
 
     def get_value(object):
         if isinstance(object,QtWidgets.QComboBox):
