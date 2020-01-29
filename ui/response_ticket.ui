@@ -34,40 +34,17 @@
      </font>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#f5c6cf;&quot;&gt;Ticket&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#f5c6cf;&quot;&gt;Ticket Response&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>110</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(130, 130, 130);</string>
-    </property>
-    <property name="text">
-     <string>Title</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>230</y>
+      <x>130</x>
+      <y>140</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -159,8 +136,8 @@ QPushButton:hover
    <widget class="QTextEdit" name="response">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>440</y>
+      <x>390</x>
+      <y>340</y>
       <width>461</width>
       <height>131</height>
      </rect>
@@ -175,8 +152,8 @@ border-color: rgb(130, 130, 130);</string>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>440</y>
+      <x>130</x>
+      <y>340</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -198,8 +175,8 @@ border-color: rgb(130, 130, 130);</string>
    <widget class="QTextBrowser" name="message">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>230</y>
+      <x>390</x>
+      <y>140</y>
       <width>461</width>
       <height>131</height>
      </rect>
@@ -209,23 +186,6 @@ border-color: rgb(130, 130, 130);</string>
 border-radius: 12px;
 border:2px outset;
 border-color: rgb(130, 130, 130);</string>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="title">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>110</y>
-      <width>251</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 12px;
-border:2px outset;
-border-color: rgb(130, 130, 130);
-</string>
     </property>
    </widget>
   </widget>

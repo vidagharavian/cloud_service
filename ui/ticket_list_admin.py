@@ -39,7 +39,10 @@ class AdminTicketListUi(QtWidgets.QMainWindow):
 
     #todo if press newTicket button go to response_ticket.ui
     def responseButtonPressed(self):
-        pass
+        from ui.response_ticket import ResponseTicketUi
+        self.OtherWindow = ResponseTicketUi(user_id=self.user_id)
+        self.OtherWindow.show()
+        self.close()
 
     def get_value(object):
         if isinstance(object,QtWidgets.QComboBox):

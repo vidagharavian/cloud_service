@@ -4,12 +4,11 @@ from PyQt5.QtGui import QIcon
 import sys
 
 class ResponseTicketUi(QtWidgets.QMainWindow):
-    def __init__(self , user_id:int=None):
+    def __init__(self , user_id:int=None, ticket_id:int=None):
         super(ResponseTicketUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('response_ticket.ui', self) # Load the .ui file
         self.user_id = user_id
 
-        self.title = self.findChild(QtWidgets.QTextBrowser,'title')
         self.message = self.findChild(QtWidgets.QTextBrowser,'message')
         self.reply = self.findChild(QtWidgets.QTextEdit,'reply')
 
