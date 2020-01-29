@@ -2,13 +2,12 @@ from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
-
-snapshot_list = {'cloud_id': 'cloud', 'Date creation': 'date_created', 'minimum CPU': 'cpu_amount',
-                 ' minimum RAM': 'ram_amount', 'minimum disk': 'disk_amount', 'minimum core': 'core_amount',
-                 'Bound width': 'band_width'}
 from PyQt5.QtWidgets import QTableWidgetItem
-from cloud_management import get_snapshots
+from cloud_management import get_snapshots, delete_snapshot, revert_snapshot
 
+snapshot_list = {'Cloud name': 'cloud', 'Date creation': 'date_created', 'minimum CPU': 'cpu_amount',
+                 ' minimum RAM': 'ram_amount', 'minimum disk': 'disk_amount', 'minimum core': 'core_amount',
+                 'Bound width': 'band_width','snapshot_id':'id'}
 
 class ShowSnapshotUi(QtWidgets.QMainWindow):
     def __init__(self, user_id: int = None):
@@ -29,12 +28,16 @@ class ShowSnapshotUi(QtWidgets.QMainWindow):
         self.delete.clicked.connect(self.deleteButtonPressed)
 
         self.snapshot_table = self.findChild(QtWidgets.QTableWidget, 'tableWidget')
+        self.snapshot_table.setColumnCount(8)
+        self.snapshot_table.setItem(0, 8, QTableWidgetItem("snapshot_id"))
+        self.snapshot_table.setColumnHidden(8, True)#todo maryam id snap_shoto inja bezar
+
         self.create_table()
 
     # todo if press revert I don't know
     def revertButtonPressed(self):
-        pass
-
+        row = self.snapshot_table.currentItem().row()
+        revert_snapshot(int(self.snapshot_table.item(row, 8).text()))
     # todo if press back button back to dashboard.ui and pass ids to it
     def backButtonPressed(self):
         from ui.dashboard import DashboardUi
@@ -51,7 +54,9 @@ class ShowSnapshotUi(QtWidgets.QMainWindow):
 
     # todo if press delete button then delete ssh and update table
     def deleteButtonPressed(self):
-        pass
+        row = self.snapshot_table.currentItem().row()
+        delete_snapshot(int(self.snapshot_table.item(row, 8).text()))
+        self.create_table()
 
     def create_table(self):
         snapshots = get_snapshots(user_id=self.user_id)
@@ -59,13 +64,13 @@ class ShowSnapshotUi(QtWidgets.QMainWindow):
         count = 0
         for cloud in snapshots:
             for key, value in cloud.items():
-                headercount = self.cloudlist.columnCount()
+                headercount = self.snapshot_table.columnCount()
                 m = key
                 for x in range(0, headercount, 1):
-                    headertext = self.cloudlist.horizontalHeaderItem(x).text()
+                    headertext = self.snapshot_table.horizontalHeaderItem(x).text()
                     if m == snapshot_list[headertext]:
                         self.tableWidget.setItem(count, x, QTableWidgetItem(str(value)))
-        count += 1
+            count += 1
     
     def get_value(object):
         if isinstance(object,QtWidgets.QComboBox):
@@ -85,7 +90,7 @@ class ShowSnapshotUi(QtWidgets.QMainWindow):
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
-    window = ShowSnapshotUi()  # Create an instance of our class
+    window = ShowSnapshotUi(19)  # Create an instance of our class
     window.show()
     sys.exit(app.exec_())  # Start the application
 

@@ -13,6 +13,7 @@ SnapShot = 'Snapshot'
 UserCloud = 'UserCloud'
 SSH = 'SSH'
 OsVersion = 'OsVersion'
+SSHINFO = 'SSHInfo'
 
 
 def get_user_clouds(user_id: int) -> dict:
@@ -21,8 +22,15 @@ def get_user_clouds(user_id: int) -> dict:
                               condition=f'where user_id={user_id}')
 
 
+<<<<<<< HEAD
 def create_cloud(os_version_id: int, user_id: int, host_name: str, cpu_amount, disk_amount: float,            ram_amount: float,band_width: float, core_amount: int):
     cost_per_day = calculate_price(core=core_amount, cpu=cpu_amount, storage=disk_amount, bandwidth=band_width,ram=ram_amount)
+=======
+def create_cloud(os_version_id: int, user_id: int, host_name: str, cpu_amount, disk_amount: float, ram_amount: float,
+                 band_width: float, core_amount: int):
+    cost_per_day = calculate_price(core=core_amount, cpu=cpu_amount, storage=disk_amount, bandwidth=band_width,
+                                   ram=ram_amount)
+>>>>>>> 91058be1a342e6a0842666b41145a31705e85d60
     Model.insert_query(model_name=Cloud,
                        input_array={'user_id': user_id, 'host_name': host_name, 'cpu_amount': cpu_amount,
                                     'disk_amount': disk_amount, 'ram_amount': ram_amount, 'band_width': band_width,
@@ -56,12 +64,13 @@ def create_ssh(name, user_id, public_key: str, cloud_id: int = None):
 
 
 def get_user_ssh(user_id):
-    return Model.select_query(model_name=SSH, out_put_array=['name', 'id', 'cloud_id'],
-                              condition=f'where user_id={user_id}')
+    return Model.select_query(model_name=SSHINFO, out_put_array=['id', 'name', 'public_key', 'cloud_name', 'cloud_id'],
+                              condition=f'where user_id={user_id}', is_view=True)
 
 
 def get_snapshots(user_id):
-    return Model.select_query(model_name=SnapShot,condition=f'where cloud in (select id from public."Wallet" where user_id = {user_id})')
+    return Model.select_query(model_name=SnapShot,
+                              condition=f'where cloud in (select id from public."Cloud" where user_id = {user_id})')
 
 
 def revert_snapshot(snapshot_id):
@@ -156,12 +165,15 @@ def edit_profile(first_name, last_name, email, national_num, user_id: int, passw
 
 def update_cloud(os_version_id: int, user_id: int, host_name: str, cpu_amount, disk_amount: float, ram_amount: float,
                  band_width: float, core_amount: int, status: int, cloud_id):
-    cost_per_day = calculate_price(core=core_amount, cpu=cpu_amount, storage=disk_amount, bandwidth=band_width,ram=ram_amount)
+    cost_per_day = calculate_price(core=core_amount, cpu=cpu_amount, storage=disk_amount, bandwidth=band_width,
+                                   ram=ram_amount)
     Model.update_query(model_name=Cloud,
                        input_array={'user_id': user_id, 'host_name': host_name, 'cpu_amount': cpu_amount,
                                     'disk_amount': disk_amount, 'ram_amount': ram_amount, 'band_width': band_width,
                                     'os_version_id': os_version_id, 'core_amount': core_amount,
                                     'cost_per_day': cost_per_day, 'status': status}, condition=f'where id = {cloud_id}')
+
+
 def get_public_private_key():
     from cryptography.hazmat.primitives import serialization as crypto_serialization
     from cryptography.hazmat.primitives.asymmetric import rsa
@@ -180,6 +192,18 @@ def get_public_private_key():
         crypto_serialization.PublicFormat.OpenSSH
     )
     return {
-        'private_key':private_key,
-        'public_key':public_key
+        'private_key': private_key.decode("utf-8"),
+        'public_key': public_key.decode("utf-8")
     }
+
+
+def delete_snapshot(snap_shot_id: int):
+    Model.delete_query(model_name=SnapShot, condition=f'where id= {snap_shot_id}')
+
+
+def delete_ssh(ssh_id):
+    Model.delete_query(model_name=SSH, condition=f'where id={ssh_id}')
+
+
+def get_ssh(ssh_id):
+    Model.select_query(model_name=SSH, condition=f'where id={ssh_id}')

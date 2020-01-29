@@ -30,33 +30,35 @@ class CreateSnapshotUi(QtWidgets.QMainWindow):
     def backButtonPressed(self):
         # pass ids
         from ui.dashboard import DashboardUi
-        self.OtherWindow = DashboardUi(user_id = self.user_id)
+        self.OtherWindow = DashboardUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
     # todo if press back button back to dashboard.ui and update snapshot list
+    def get_value(self, object):
+        if isinstance(object, QtWidgets.QComboBox):
+            value = object.itemData(object.currentIndex())
+        if isinstance(object, QtWidgets.QTextEdit):
+            value = object.toPlainText()
+        if isinstance(object, QtWidgets.QTextBrowser):
+            value = object.toPlainText()
+        if isinstance(object, QtWidgets.QLabel):
+            value = object.text()
+        if isinstance(object, QtWidgets.QSpinBox):
+            value = object.value()
+        if isinstance(object, QtWidgets.QDoubleSpinBox):
+            value = object.value()
+        return value
+
     def takeButtonPressed(self):
         # pass ids
-        take_snapshot(cloud_id=self.select_cloud.itemData(self.select_cloud.currentIndex())[0])
+        take_snapshot(cloud_id=self.select_cloud.itemData(self.select_cloud.currentIndex())[0],
+                      name=self.get_value(self.image_name))
         from ui.dashboard import DashboardUi
-        self.OtherWindow = DashboardUi(user_id = self.user_id)
+        self.OtherWindow = DashboardUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
-    def get_value(object):
-        if isinstance(object,QtWidgets.QComboBox):
-            value = object.itemData(object.currentIndex())
-        if isinstance( object,QtWidgets.QTextEdit):
-            value = object.toPlainText()
-        if isinstance(object,QtWidgets.QTextBrowser):
-            value = object.toPlainText()
-        if isinstance(object,QtWidgets.QLabel):
-            value = object.text()
-        if isinstance(object,QtWidgets.QSpinBox):
-            value = object.value()
-        if isinstance (object,QtWidgets.QDoubleSpinBox):
-            value = object.value()
-        return value
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
