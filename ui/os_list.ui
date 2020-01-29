@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>800</height>
+    <height>798</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,9 +43,9 @@
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>60</y>
-      <width>901</width>
+      <x>100</x>
+      <y>70</y>
+      <width>811</width>
       <height>571</height>
      </rect>
     </property>
@@ -61,11 +61,6 @@
     <column>
      <property name="text">
       <string>OS Name</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Version</string>
      </property>
     </column>
     <column>
@@ -103,17 +98,12 @@
       <string>os_id</string>
      </property>
     </column>
-    <column>
-     <property name="text">
-      <string>os_ver_id</string>
-     </property>
-    </column>
    </widget>
    <widget class="QPushButton" name="back">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>690</y>
+      <y>680</y>
       <width>161</width>
       <height>51</height>
      </rect>
@@ -145,8 +135,8 @@ QPushButton:hover
    <widget class="QPushButton" name="new_os">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>690</y>
+      <x>280</x>
+      <y>680</y>
       <width>171</width>
       <height>51</height>
      </rect>
@@ -178,8 +168,8 @@ QPushButton:hover
    <widget class="QPushButton" name="edit_os">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>690</y>
+      <x>520</x>
+      <y>680</y>
       <width>171</width>
       <height>51</height>
      </rect>
@@ -206,6 +196,39 @@ QPushButton:hover
     </property>
     <property name="text">
      <string>Edit OS</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="edit_os_2">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>680</y>
+      <width>171</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: #f1d1d6;
+	color: #828282;
+	border-radius:20px;
+}
+
+QPushButton:hover
+{
+	background-color: #ff8b8d;
+	color: #656565;
+	border-radius:20px;
+}</string>
+    </property>
+    <property name="text">
+     <string>See OS Versions</string>
     </property>
    </widget>
   </widget>

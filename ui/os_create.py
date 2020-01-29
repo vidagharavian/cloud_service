@@ -27,6 +27,7 @@ class CreateOS(QtWidgets.QMainWindow):
         self.add = self.findChild(QtWidgets.QPushButton,'add')
         self.add.clicked.connect(self.addButtonPressed)
 
+
     #todo if press back button back to dashboard
     def backButtonPressed(self):
         from ui.os_list import OSList
@@ -35,8 +36,8 @@ class CreateOS(QtWidgets.QMainWindow):
         self.close()
     #todo if press submit button go to dashboard and save public_key and name for the cloud
     def addButtonPressed(self):
-        #first add this os then go to dashboard
-        from ui.os_list import OSList
+        #first add this os version then go to dashboard
+        from os_list import OSList
         self.OtherWindow = OSList(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()

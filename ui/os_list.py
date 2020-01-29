@@ -19,6 +19,16 @@ class OSList(QtWidgets.QMainWindow):
         self.edit_os = self.findChild(QtWidgets.QPushButton,'edit_os')
         self.edit_os.clicked.connect(self.editOSButtonPressed)
 
+        self.see_ver = self.findChild(QtWidgets.QPushButton,'see_ver')
+        self.see_ver.clicked.connect(self.seeVersionButtonPressed)
+
+
+    def seeVersionButtonPressed(self):
+        from ui.see_os_ver import SeeOSVersionUI
+        self.OtherWindow = SeeOSVersionUI(user_id = self.user_id)#todo get os_id from table
+        self.OtherWindow.show()
+        self.close()
+
     #todo if press back button back to dashboard
     def backButtonPressed(self):
         from ui.admin_dashboard import AdminDashboardUi
