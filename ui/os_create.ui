@@ -20,8 +20,8 @@
    <widget class="QTextEdit" name="os_version">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>70</y>
+      <x>800</x>
+      <y>80</y>
       <width>191</width>
       <height>56</height>
      </rect>
@@ -43,7 +43,7 @@ border-color: rgb(130, 130, 130);
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>70</y>
+      <y>80</y>
       <width>191</width>
       <height>56</height>
      </rect>
@@ -65,7 +65,7 @@ border-color: rgb(130, 130, 130);
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>80</y>
+      <y>90</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -87,8 +87,8 @@ border-color: rgb(130, 130, 130);
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>80</y>
+      <x>560</x>
+      <y>90</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -181,7 +181,7 @@ QPushButton:hover
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>350</y>
+      <y>380</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -204,7 +204,7 @@ QPushButton:hover
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>230</y>
+      <y>240</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -227,7 +227,7 @@ QPushButton:hover
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>230</y>
+      <y>240</y>
       <width>111</width>
       <height>51</height>
      </rect>
@@ -247,7 +247,7 @@ border-color: rgb(130, 130, 130);</string>
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>350</y>
+      <y>380</y>
       <width>111</width>
       <height>51</height>
      </rect>
@@ -267,7 +267,7 @@ border-color: rgb(130, 130, 130);</string>
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>230</y>
+      <y>240</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -290,7 +290,7 @@ border-color: rgb(130, 130, 130);</string>
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>350</y>
+      <y>380</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -313,7 +313,7 @@ border-color: rgb(130, 130, 130);</string>
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>350</y>
+      <y>380</y>
       <width>111</width>
       <height>51</height>
      </rect>
@@ -333,7 +333,7 @@ border-color: rgb(130, 130, 130);</string>
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>230</y>
+      <y>240</y>
       <width>111</width>
       <height>51</height>
      </rect>
@@ -352,8 +352,8 @@ border-color: rgb(130, 130, 130);</string>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>230</y>
+      <x>620</x>
+      <y>240</y>
       <width>201</width>
       <height>41</height>
      </rect>
@@ -375,8 +375,8 @@ border-color: rgb(130, 130, 130);</string>
    <widget class="QDoubleSpinBox" name="bandwidth">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>230</y>
+      <x>820</x>
+      <y>240</y>
       <width>111</width>
       <height>51</height>
      </rect>
@@ -395,10 +395,10 @@ border-color: rgb(130, 130, 130);</string>
    <widget class="QTextEdit" name="cost">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>500</y>
+      <x>210</x>
+      <y>510</y>
       <width>191</width>
-      <height>56</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -418,8 +418,8 @@ border-color: rgb(130, 130, 130);</string>
      <rect>
       <x>30</x>
       <y>510</y>
-      <width>201</width>
-      <height>41</height>
+      <width>171</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">

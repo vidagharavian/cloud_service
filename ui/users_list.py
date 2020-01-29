@@ -15,6 +15,7 @@ class UsersListUi(QtWidgets.QMainWindow):
         super(UsersListUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('users_list.ui', self)  # Load the .ui file
         self.user_id = user_id
+        
         self.back = self.findChild(QtWidgets.QPushButton, 'pb_back')
         self.back.clicked.connect(self.backButtonPressed)
 
@@ -24,6 +25,7 @@ class UsersListUi(QtWidgets.QMainWindow):
 
         self.userlist = self.findChild(QtWidgets.QTableWidget, 'tableWidget')
         self.userlist.setColumnHidden(5, True)  # column 4 is id
+
         self.set_table()
     def set_table(self):
         users = get_customers()
