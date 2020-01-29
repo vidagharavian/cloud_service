@@ -4,13 +4,14 @@ from PyQt5.QtGui import QIcon
 import sys
 
 class ResponseTicketUi(QtWidgets.QMainWindow):
-    def __init__(self , user_id:int=None, ticket_id:int=None):
+    def __init__(self , user_id:int=None, ticket_id:int=None ):
         super(ResponseTicketUi, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('response_ticket.ui', self) # Load the .ui file
         self.user_id = user_id
 
+        self.title = self.findChild(QtWidgets.QTextBrowser,'title')
         self.message = self.findChild(QtWidgets.QTextBrowser,'message')
-        self.reply = self.findChild(QtWidgets.QTextEdit,'reply')
+        self.reply = self.findChild(QtWidgets.QTextEdit,'response')
 
         self.back = self.findChild(QtWidgets.QPushButton,'back')
         self.back.clicked.connect(self.backButtonPressed)
@@ -29,7 +30,7 @@ class ResponseTicketUi(QtWidgets.QMainWindow):
     #todo if press send button go to dashboard page and save it in ticket table and set 'pasokh dade shod'
     def replyButtonPressed(self):
         #save response and back to dashboard
-        from admin_dashboard import AdminTicketListUi
+        from ui.ticket_list_admin import AdminTicketListUi
         self.OtherWindow = AdminTicketListUi(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()

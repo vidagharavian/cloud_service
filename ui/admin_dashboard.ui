@@ -144,7 +144,7 @@ border-radius:20px;</string>
       <height>781</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0">
      <property name="spacing">
       <number>0</number>
      </property>
@@ -208,6 +208,23 @@ color: rgb(130, 130, 130);</string>
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="os">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(130, 130, 130);
+border: 0px;
+background-color: rgb(254, 235, 255);</string>
+       </property>
+       <property name="text">
+        <string>Operating Systems</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton_2">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
@@ -222,9 +239,9 @@ color: rgb(130, 130, 130);</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(130, 130, 130);
+        <string notr="true">background-color: rgb(241, 209, 214);
 border: 0px;
-background-color: rgb(254, 235, 255);</string>
+color: rgb(130, 130, 130);</string>
        </property>
        <property name="text">
         <string/>

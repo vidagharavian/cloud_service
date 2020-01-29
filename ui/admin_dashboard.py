@@ -19,6 +19,9 @@ class AdminDashboardUi(QtWidgets.QMainWindow):
         self.ticket = self.findChild(QtWidgets.QPushButton, 'bt_tickets')
         self.ticket.clicked.connect(self.ticketsButtonPressed)
 
+        self.os = self.findChild(QtWidgets.QPushButton,'os')
+        self.os.clicked.connect(self.osButtonPressed)
+
         self.exit = self.findChild(QtWidgets.QPushButton, 'bt_exit')
         self.exit.clicked.connect(self.exitButtonPressed)
 
@@ -48,6 +51,11 @@ class AdminDashboardUi(QtWidgets.QMainWindow):
         self.OtherWindow.show()
         self.close()
 
+    def osButtonPressed(self):
+        from ui.os_list import OSList
+        self.OtherWindow = OSList(user_id=self.user_id)
+        self.OtherWindow.show()
+        self.close()
 
     def exitButtonPressed(self):
         from ui.loginui import LoginUi

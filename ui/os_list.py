@@ -29,7 +29,7 @@ class OSList(QtWidgets.QMainWindow):
     def newOSButtonPressed(self):
         #first add this os then go to dashboard
         from ui.os_create import CreateOS
-        self.OtherWindow = CreateOS(user_id = self.user_id)
+        self.OtherWindow = CreateOS(user_id = self.user_id,os_id=)
         self.OtherWindow.show()
         self.close()
 

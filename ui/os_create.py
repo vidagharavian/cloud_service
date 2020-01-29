@@ -5,11 +5,11 @@ import sys
 
 
 class CreateOS(QtWidgets.QMainWindow):
-    def __init__(self , user_id:int=None):
+    def __init__(self , user_id:int=None,os_id:int=None):
         super(CreateOS, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('os_create.ui', self) # Load the .ui file
         self.user_id = user_id
-
+        self.os_id = os_id
         self.base_ram = self.findChild(QtWidgets.QSpinBox,'ram')
         self.base_cpu = self.findChild(QtWidgets.QSpinBox,'cpu')
         self.base_core = self.findChild(QtWidgets.QSpinBox,'core')

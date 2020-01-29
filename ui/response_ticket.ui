@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>800</height>
+    <height>807</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,8 +43,8 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>140</y>
+      <x>140</x>
+      <y>260</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -101,7 +101,7 @@ QPushButton:hover
    <widget class="QPushButton" name="back">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>180</x>
       <y>650</y>
       <width>181</width>
       <height>61</height>
@@ -136,8 +136,8 @@ QPushButton:hover
    <widget class="QTextEdit" name="response">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>340</y>
+      <x>400</x>
+      <y>450</y>
       <width>461</width>
       <height>131</height>
      </rect>
@@ -152,8 +152,8 @@ border-color: rgb(130, 130, 130);</string>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>340</y>
+      <x>140</x>
+      <y>450</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -175,10 +175,49 @@ border-color: rgb(130, 130, 130);</string>
    <widget class="QTextBrowser" name="message">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>140</y>
+      <x>400</x>
+      <y>260</y>
       <width>461</width>
       <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 12px;
+border:2px outset;
+border-color: rgb(130, 130, 130);</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>150</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(130, 130, 130);</string>
+    </property>
+    <property name="text">
+     <string>Title</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="title">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>150</y>
+      <width>321</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
