@@ -18,12 +18,18 @@ class ShowSSHUi(QtWidgets.QMainWindow):
         self.back = self.findChild(QtWidgets.QPushButton, 'bt_back')
         self.back.clicked.connect(self.backButtonPressed)
 
+        self.edit = self.findChild(QtWidgets.QPushButton, 'edit')
+        self.edit.clicked.connect(self.update_buttonPressed)
+
+        self.create = self.findChild(QtWidgets.QPushButton, 'create')
+        self.create.clicked.connect(self.createButtonPressed)
+
         self.delete = self.findChild(QtWidgets.QPushButton, 'delete_2')
         self.delete.clicked.connect(self.deleteButtonPressed)
         # todo maryam action titlesh pak nashode
         self.ssh_list = self.findChild(QtWidgets.QTableWidget, 'tableWidget')
-        self.ssh_list.setColumnHidden(3, True)
-        self.ssh_list.setColumnHidden(4, True)  # column 5 is id
+        self.ssh_list.setColumnHidden(3, True)  # column 3 is cloud id
+        self.ssh_list.setColumnHidden(4, True)  # column 4 is id
         self.create_table()
 
     def create_table(self):
@@ -46,6 +52,13 @@ class ShowSSHUi(QtWidgets.QMainWindow):
         self.OtherWindow = MakeSSHUi(user_id=self.user_id,ssh_id=int(self.ssh_list.item(row, 4).text()))
         self.OtherWindow.show()
         self.close()
+
+    def createButtonPressed(self):
+        from ui.ssh_make import MakeSSHUi
+        self.OtherWindow = MakeSSHUi(user_id=self.user_id)
+        self.OtherWindow.show()
+        self.close()
+
     def deleteButtonPressed(self):
         row = self.ssh_list.currentItem().row()
         delete_ssh(int(self.ssh_list.item(row, 4).text()))
@@ -65,9 +78,6 @@ class ShowSSHUi(QtWidgets.QMainWindow):
         self.OtherWindow.show()
         self.close()
 
-    # todo if press one row go to edit_ssh.ui page
-    def rowButtonPressed(self):
-        pass
 
     def get_value(object):
         if isinstance(object, QtWidgets.QComboBox):

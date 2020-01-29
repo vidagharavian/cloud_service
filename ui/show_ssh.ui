@@ -20,9 +20,9 @@
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>210</x>
       <y>60</y>
-      <width>811</width>
+      <width>601</width>
       <height>601</height>
      </rect>
     </property>
@@ -52,7 +52,7 @@
     </column>
     <column>
      <property name="text">
-      <string>Action</string>
+      <string>Cloud id</string>
      </property>
     </column>
     <column>
@@ -64,7 +64,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>330</x>
       <y>10</y>
       <width>371</width>
       <height>41</height>
@@ -145,6 +145,76 @@ QPushButton:hover
     </property>
     <property name="text">
      <string>Delete SSH</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="create">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>700</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: #f1d1d6;
+	color: #828282;
+	border-radius:20px;
+}
+
+QPushButton:hover
+{
+	background-color: #ff8b8d;
+	color: #656565;
+	border-radius:20px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Create SSH</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="edit">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>700</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: #f1d1d6;
+	color: #828282;
+	border-radius:20px;
+}
+
+QPushButton:hover
+{
+	background-color: #ff8b8d;
+	color: #656565;
+	border-radius:20px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Edit SSH</string>
     </property>
    </widget>
   </widget>

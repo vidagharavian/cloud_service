@@ -17,11 +17,30 @@ class MakeSSHUi(QtWidgets.QMainWindow):
         self.public_key = self.findChild(QtWidgets.QTextBrowser, 'public_key')
         self.private_key = self.findChild(QtWidgets.QTextBrowser, 'private_key')
         self.cloud_list = self.findChild(QtWidgets.QComboBox, 'cloud_list')
+        self.private_label = self.findChild(QtWidgets.QLabel, 'label_3')
+        self.label = self.findChild(QtWidgets.QLabel, 'label_4')
 
         self.back = self.findChild(QtWidgets.QPushButton, 'back')
         self.back.clicked.connect(self.backButtonPressed)
         self.submit = self.findChild(QtWidgets.QPushButton, 'submit')
         self.submit.clicked.connect(self.submitButtonPressed)
+        self.edit = self.findChild(QtWidgets.QPushButton, 'edit') 
+        self.edit.clicked.connect(self.editButtonPressed)
+
+        if ssh_id is not None:
+            self.private_key.setVisible(False)
+            self.private_label.setVisible(False)
+            self.label.setVisible(False)
+            self.edit.setVisible(False)
+            self.submit.setVisible(True)
+
+        else:
+            self.private_key.setVisible(True)
+            self.private_label.setVisible(True)
+            self.label.setVisible(True)
+            self.edit.setVisible(True)
+            self.submit.setVisible(False)
+
         self.set_defaults()
 
     def set_clouds(self, is_update):
@@ -62,17 +81,25 @@ class MakeSSHUi(QtWidgets.QMainWindow):
     def submitButtonPressed(self):
         # first save this ssh for cloud then go to dashboard
         try:
-            cloud_id=self.cloud_list.itemData(self.cloud_list.currentIndex())[0]
             create_ssh(self.get_value(self.ssh_name), self.user_id, self.get_value(self.public_key),
-                     cloud_id)
-        except TypeError:
-            create_ssh(self.get_value(self.ssh_name), self.user_id, self.get_value(self.public_key))
+                       self.cloud_list.itemData(self.cloud_list.currentIndex())[0])
+        except Exception:
+            create_ssh(self.get_value(self.ssh_name), self.user_id, self.get_value(self.public_key),
+                       self.cloud_list.itemData(self.cloud_list.currentIndex())[0])
         from ui.show_ssh import ShowSSHUi
         self.OtherWindow = ShowSSHUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
-    def get_value(self,object):
+    def editButtonPressed(self):
+        #todo edit ssh
+        from ui.show_ssh import ShowSSHUi
+        self.OtherWindow = ShowSSHUi(user_id=self.user_id)
+        self.OtherWindow.show()
+        self.close()
+
+
+    def get_value(object):
         if isinstance(object, QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
         if isinstance(object, QtWidgets.QTextEdit):
@@ -87,8 +114,6 @@ class MakeSSHUi(QtWidgets.QMainWindow):
             value = object.value()
         return value
 
-    def update_button_pressed(self):
-        pass
 
 
 def main():

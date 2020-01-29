@@ -92,6 +92,11 @@
      <string>Bound width</string>
     </property>
    </column>
+   <column>
+    <property name="text">
+     <string>snapshot_id</string>
+    </property>
+   </column>
   </widget>
   <widget class="QPushButton" name="back">
    <property name="geometry">

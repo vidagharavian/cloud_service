@@ -1,4 +1,4 @@
-CREATE TRIGGER check_cost()
+CREATE TRIGGER check_cost
   after insert
   ON public."Cloud"
   FOR EACH ROW 

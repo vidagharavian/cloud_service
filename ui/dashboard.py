@@ -25,9 +25,6 @@ class DashboardUi(QtWidgets.QMainWindow):
         self.ssh_keys = self.findChild(QtWidgets.QPushButton, 'bt_ssh')
         self.ssh_keys.clicked.connect(self.sshButtonPressed)
 
-        self.make_ssh = self.findChild(QtWidgets.QPushButton, 'make_ssh')
-        self.make_ssh.clicked.connect(self.makeSSHButtonPressed)
-
         self.ticket = self.findChild(QtWidgets.QPushButton, 'bt_tickets')
         self.ticket.clicked.connect(self.ticketsButtonPressed)
 
@@ -71,12 +68,6 @@ class DashboardUi(QtWidgets.QMainWindow):
     def sshButtonPressed(self):
         from ui.show_ssh import ShowSSHUi
         self.OtherWindow = ShowSSHUi(user_id=self.user_id)
-        self.OtherWindow.show()
-        self.close()
-
-    def makeSSHButtonPressed(self):
-        from ui.ssh_make import MakeSSHUi
-        self.OtherWindow = MakeSSHUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
