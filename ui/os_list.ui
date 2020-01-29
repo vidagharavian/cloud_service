@@ -198,7 +198,7 @@ QPushButton:hover
      <string>Edit OS</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="edit_os_2">
+   <widget class="QPushButton" name="see_ver">
     <property name="geometry">
      <rect>
       <x>760</x>
