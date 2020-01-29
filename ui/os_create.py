@@ -3,6 +3,8 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QIcon
 import sys
 
+from admin import create_os
+
 
 class CreateOS(QtWidgets.QMainWindow):
     def __init__(self , user_id:int=None,os_id:int=None):
@@ -36,11 +38,12 @@ class CreateOS(QtWidgets.QMainWindow):
     #todo if press submit button go to dashboard and save public_key and name for the cloud
     def addButtonPressed(self):
         #first add this os version then go to dashboard
-        from os_list import OSList
+        create_os(self.get_value(self.os_name),self.get_value(self.base_ram),self.get_value(self.base_cpu),self.get_value(self.base_core),self.get_value(self.cost),self.get_value(self.base_bandwidth))
+        from ui.os_list import OSList
         self.OtherWindow = OSList(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()
-
+    @staticmethod
     def get_value(object):
         if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())

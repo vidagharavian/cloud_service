@@ -5,11 +5,11 @@ import sys
 
 
 class OSList(QtWidgets.QMainWindow):
-    def __init__(self , user_id:int=None):
+    def __init__(self , user_id:int=None,is_manager=False):
         super(OSList, self).__init__() # Call the inherited classes __init__ method
         uic.loadUi('os_list.ui', self) # Load the .ui file
         self.user_id = user_id
-
+        self.is_manager=is_manager
         self.back = self.findChild(QtWidgets.QPushButton,'back')
         self.back.clicked.connect(self.backButtonPressed)
 
@@ -21,7 +21,9 @@ class OSList(QtWidgets.QMainWindow):
 
         self.see_ver = self.findChild(QtWidgets.QPushButton,'see_ver')
         self.see_ver.clicked.connect(self.seeVersionButtonPressed)
-
+        if is_manager:
+            self.edit_os.setVisible(False)
+            self.new_os.setVisible(False)
 
     def seeVersionButtonPressed(self):
         from ui.see_os_ver import SeeOSVersionUI

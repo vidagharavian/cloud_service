@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="public">
+	<entities>
+		<data-source id="postgres-jdbc-16ff3137cdc-5484eb1744f032f4">
+			<entity id="1" name="Admin" fq-name="public.&quot;Admin&quot;">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="2" name="Cloud" fq-name="public.&quot;Cloud&quot;">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="3" name="Customer" fq-name="public.&quot;Customer&quot;">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="4" name="OS" fq-name="public.&quot;OS&quot;">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="5" name="OsVersion" fq-name="public.&quot;OsVersion&quot;">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="6" name="SSH" fq-name="public.&quot;SSH&quot;">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="7" name="Snapshot" fq-name="public.&quot;Snapshot&quot;">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="8" name="Ticket" fq-name="public.&quot;Ticket&quot;">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="9" name="TicketResponse" fq-name="public.&quot;TicketResponse&quot;">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="10" name="TicketStatus" fq-name="public.&quot;TicketStatus&quot;">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="11" name="Transaction" fq-name="public.&quot;Transaction&quot;">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="12" name="Wallet" fq-name="public.&quot;Wallet&quot;">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="13" name="customerinfo" fq-name="public.customerinfo">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="14" name="getticketinfo" fq-name="public.getticketinfo">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="15" name="ososversion" fq-name="public.ososversion">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="16" name="sshinfo" fq-name="public.sshinfo">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+			<entity id="17" name="usercloud" fq-name="public.usercloud">
+				<path name="public"/>
+				<path name="CloudManagement"/>
+			</entity>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="responser" fq-name="public.&quot;TicketResponse&quot;.responser" type="fk" pk-ref="1" fk-ref="9"/>
+		<relation name="SSH_cloud_id_fkey" fq-name="public.&quot;SSH&quot;.&quot;SSH_cloud_id_fkey&quot;" type="fk" pk-ref="2" fk-ref="6"/>
+		<relation name="Snapshot_cloud_fkey" fq-name="public.&quot;Snapshot&quot;.&quot;Snapshot_cloud_fkey&quot;" type="fk" pk-ref="2" fk-ref="7"/>
+		<relation name="Ticket_cloud_id_fkey" fq-name="public.&quot;Ticket&quot;.&quot;Ticket_cloud_id_fkey&quot;" type="fk" pk-ref="2" fk-ref="8"/>
+		<relation name="Cloud_user_id_fkey" fq-name="public.&quot;Cloud&quot;.&quot;Cloud_user_id_fkey&quot;" type="fk" pk-ref="3" fk-ref="2"/>
+		<relation name="SSH_user_id_fkey" fq-name="public.&quot;SSH&quot;.&quot;SSH_user_id_fkey&quot;" type="fk" pk-ref="3" fk-ref="6"/>
+		<relation name="wallet_user_id_fkey" fq-name="public.&quot;Wallet&quot;.wallet_user_id_fkey" type="fk" pk-ref="3" fk-ref="12"/>
+		<relation name="OsVersion_os_id_fkey" fq-name="public.&quot;OsVersion&quot;.&quot;OsVersion_os_id_fkey&quot;" type="fk" pk-ref="4" fk-ref="5"/>
+		<relation name="Cloud_os_version_id_fkey" fq-name="public.&quot;Cloud&quot;.&quot;Cloud_os_version_id_fkey&quot;" type="fk" pk-ref="5" fk-ref="2"/>
+		<relation name="Snapshot_os_version_id_fkey" fq-name="public.&quot;Snapshot&quot;.&quot;Snapshot_os_version_id_fkey&quot;" type="fk" pk-ref="5" fk-ref="7"/>
+		<relation name="TicketResponse_ticket_id_fkey" fq-name="public.&quot;TicketResponse&quot;.&quot;TicketResponse_ticket_id_fkey&quot;" type="fk" pk-ref="8" fk-ref="9"/>
+		<relation name="tidket_f" fq-name="public.&quot;TicketStatus&quot;.tidket_f" type="fk" pk-ref="8" fk-ref="10"/>
+		<relation name="wallet_id_fk" fq-name="public.&quot;Transaction&quot;.wallet_id_fk" type="fk" pk-ref="12" fk-ref="11"/>
+	</relations>
+</diagram>
