@@ -19,7 +19,6 @@ class CreateOS(QtWidgets.QMainWindow):
         self.cost = self.findChild(QtWidgets.QTextEdit,'cost')
 
         self.os_name = self.findChild(QtWidgets.QTextEdit,'os_name')
-        self.os_version = self.findChild(QtWidgets.QTextBrowser,'os_version')
 
         self.back = self.findChild(QtWidgets.QPushButton,'back')
         self.back.clicked.connect(self.backButtonPressed)
