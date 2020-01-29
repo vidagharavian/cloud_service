@@ -58,7 +58,8 @@ class AdminTicketListUi(QtWidgets.QMainWindow):
     # todo if press newTicket button go to response_ticket.ui
     def responseButtonPressed(self):
         from ui.response_ticket import ResponseTicketUi
-        self.OtherWindow = ResponseTicketUi(user_id=self.user_id,ticket_id=)
+        row = self.ticketlist.currentItem().row()
+        self.OtherWindow = ResponseTicketUi(user_id=self.user_id,ticket_id=self.ticketlist.item(row, 5).text())
         self.OtherWindow.show()
         self.close()
 

@@ -51,7 +51,7 @@ class UsersListUi(QtWidgets.QMainWindow):
     # todo if press delete button then delete row and update table
     def deleteButtonPressed(self):
         row = self.userlist.currentItem().row()
-        delete_user(int(self.userlist.item(row,5).text()))
+        delete_user(int(self.userlist.item(row,4).text()))
         self.set_table()
 
     def get_value(object):
@@ -76,7 +76,7 @@ def insert_in_rows():
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
-    window = UsersListUi()  # Create an instance of our class
+    window = UsersListUi(1)  # Create an instance of our class
     window.show()
     app.exec_()  # Start the application
 
