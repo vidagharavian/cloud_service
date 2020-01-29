@@ -46,7 +46,8 @@ def sign_in(email: str, password: str, is_admin=False) -> dict:
             else:
                 return {
                     "id": rows[0][0],
-                    "email": rows[0][0],
+                    "email": rows[0][1],
+                    "is_super":rows[0][3]
                 }
 
 

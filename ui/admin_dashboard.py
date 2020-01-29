@@ -5,11 +5,11 @@ import sys
 
 
 class AdminDashboardUi(QtWidgets.QMainWindow):
-    def __init__(self, user_id: int = None):
+    def __init__(self, user_id: int = None,is_manager=False):
         super(AdminDashboardUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('admin_dashboard.ui', self)  # Load the .ui file
         self.user_id = user_id
-
+        self.is_manager=is_manager
         self.users = self.findChild(QtWidgets.QPushButton, 'bt_users')
         self.users.clicked.connect(self.UsersButtonPressed)
 
@@ -33,21 +33,21 @@ class AdminDashboardUi(QtWidgets.QMainWindow):
     # todo if editProf pressed then go to users_list.ui and send ids
     def UsersButtonPressed(self):
         from ui.users_list import UsersListUi
-        self.OtherWindow = UsersListUi(user_id=self.user_id)
+        self.OtherWindow = UsersListUi(user_id=self.user_id,is_manager=self.is_manager)
         self.OtherWindow.show()
         self.close()
 
     # todo if clouds pressed then go to cloud_list.ui
     def cloudsButtonPressed(self):
         from ui.admin_cloud_list import AdminCloudListUi
-        self.OtherWindow = AdminCloudListUi(user_id=self.user_id)
+        self.OtherWindow = AdminCloudListUi(user_id=self.user_id,is_manager=self.is_manager)
         self.OtherWindow.show()
         self.close()
 
 
     def ticketsButtonPressed(self):
         from ui.ticket_list_admin import AdminTicketListUi
-        self.OtherWindow = AdminTicketListUi(user_id=self.user_id)
+        self.OtherWindow = AdminTicketListUi(user_id=self.user_id,is_manager=self.is_manager)
         self.OtherWindow.show()
         self.close()
 
@@ -88,4 +88,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-# todo maryam pak kon oon ssh va snapshoto be admin rabty nadare
+

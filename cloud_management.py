@@ -228,3 +228,4 @@ def delete_ticket(ticket_id):
 
 def delete_user(user_id):
     Model.delete_query(model_name=UserTable, condition=f"where id = {user_id}")
+

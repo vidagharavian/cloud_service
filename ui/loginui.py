@@ -34,7 +34,7 @@ class LoginUi(QtWidgets.QMainWindow):
             admin=sign_in(self.email.toPlainText(), self.password.toPlainText(),True)
             from ui.admin_dashboard import AdminDashboardUi
             if admin is not None:
-                self.OtherWindow = AdminDashboardUi(admin['id'])
+                self.OtherWindow = AdminDashboardUi(admin['id'],not admin['is_super'])
                 self.OtherWindow.show()
                 self.close()
         else:

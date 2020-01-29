@@ -26,14 +26,14 @@ class ManageDashboardUi(QtWidgets.QMainWindow):
     #todo if clouds pressed then go to manag_cloud_list.ui and show all clouds
     def cloudsButtonPressed(self):
         print("fdms,ydbfdkfvdfc")
-        from manag_cloud_list import ManageCloudListUi
+        from ui.manag_cloud_list import ManageCloudListUi
         self.OtherWindow = ManageCloudListUi()
         self.OtherWindow.show()
         self.close()
 
     #todo if users pressed then go to all_users.ui
     def usersButtonPressed(self):
-        from manag_users_list import ManageUserListUi
+        from ui.manag_users_list import ManageUserListUi
         self.OtherWindow = ManageUserListUi()
         self.OtherWindow.show()
         self.close()

@@ -22,14 +22,14 @@ class ManageUserListUi(QtWidgets.QMainWindow):
     #todo if press see button then save go to manag_cloud_list.ui and show list of that user sources
     def seeButtonPressed(self):
         #see clouds of selected user
-        from manag_cloud_list import ManageCloudListUi
+        from ui.manag_cloud_list import ManageCloudListUi
         self.OtherWindow = ManageCloudListUi()
         self.OtherWindow.show()
         self.close()
 
     #todo if press back button back to manag_dashboard.ui
     def backButtonPressed(self):
-        from manag_dashboard import ManageDashboardUi
+        from ui.manag_dashboard import ManageDashboardUi
         self.OtherWindow = ManageDashboardUi()
         self.OtherWindow.show()
         self.close()

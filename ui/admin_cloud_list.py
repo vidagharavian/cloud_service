@@ -13,11 +13,11 @@ cloud_list = {'Cloud id': 'cloud_id', 'Cloud name': 'host_name', 'Firstname': 'f
 
 
 class AdminCloudListUi(QtWidgets.QMainWindow):
-    def __init__(self, user_id: int = None):
+    def __init__(self, user_id: int = None, is_manager=False):
         super(AdminCloudListUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('admin_cloud_list.ui', self)  # Load the .ui file
         self.user_id = user_id
-
+        self.is_manager = is_manager
         self.back = self.findChild(QtWidgets.QPushButton, 'back')
         self.back.clicked.connect(self.backButtonPressed)
 
@@ -30,6 +30,9 @@ class AdminCloudListUi(QtWidgets.QMainWindow):
         self.cloudlist = self.findChild(QtWidgets.QTableWidget, 'tableWidget')
         self.cloudlist.setColumnHidden(0, True)  # column 0 is cloud id
         self.create_table()
+        if is_manager:
+            self.editCloud.setVisible(False)
+            self.deleteCloud.setVisible(False)
 
     # todo: no need for user_id
     def create_table(self):
@@ -62,14 +65,14 @@ class AdminCloudListUi(QtWidgets.QMainWindow):
     # todo if press back button back to dashboard.ui
     def backButtonPressed(self):
         from ui.admin_dashboard import AdminDashboardUi
-        self.OtherWindow = AdminDashboardUi(user_id=self.user_id)
+        self.OtherWindow = AdminDashboardUi(user_id=self.user_id,is_manager=self.is_manager)
         self.OtherWindow.show()
         self.close()
 
     # todo if press delete then delete selected cloud and update table
     def deleteButtonPressed(self):
         row = self.cloudlist.currentItem().row()
-        Model.delete_query(model_name=Cloud, condition=f'where id={self.cloudlist.item(row, 1).text()}')
+        Model.delete_query(model_name=Cloud, condition=f'where id={self.cloudlist.item(row, 0).text()}')
         self.create_table()
 
     def get_value(object):
@@ -97,4 +100,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -13,11 +13,11 @@ admin_ticket_list = {'title': 'ticket_title', 'message': 'ticket_body', 'respons
 
 
 class AdminTicketListUi(QtWidgets.QMainWindow):
-    def __init__(self, user_id: int = None):
+    def __init__(self, user_id: int = None,is_manager=False):
         super(AdminTicketListUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('ticket_list_admin.ui', self)  # Load the .ui file
         self.user_id = user_id
-
+        self.is_manager=is_manager
         self.back = self.findChild(QtWidgets.QPushButton, 'pb_back')
         self.back.clicked.connect(self.backButtonPressed)
 
@@ -33,8 +33,8 @@ class AdminTicketListUi(QtWidgets.QMainWindow):
         self.set_table()
     # todo if press ignore button just remove from this list table not from db table and set status 'ignore'
     def ignoreButtonPressed(self):
-        pass
-
+        row = self.ticketlist.currentItem().row()
+        self.ticketlist.item(row, 5).text()
     def set_table(self):
         tickets = get_tickets()
         self.ticketlist.setRowCount(len(tickets))
@@ -51,7 +51,7 @@ class AdminTicketListUi(QtWidgets.QMainWindow):
 
     def backButtonPressed(self):
         from ui.admin_dashboard import AdminDashboardUi
-        self.OtherWindow = AdminDashboardUi(user_id=self.user_id)
+        self.OtherWindow = AdminDashboardUi(user_id=self.user_id,is_manager=self.is_manager)
         self.OtherWindow.show()
         self.close()
 

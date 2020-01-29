@@ -36,7 +36,7 @@ class CreateOS(QtWidgets.QMainWindow):
     #todo if press submit button go to dashboard and save public_key and name for the cloud
     def addButtonPressed(self):
         #first add this os then go to dashboard
-        from os_list import OSList
+        from ui.os_list import OSList
         self.OtherWindow = OSList(user_id = self.user_id)
         self.OtherWindow.show()
         self.close()

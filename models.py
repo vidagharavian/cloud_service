@@ -115,6 +115,7 @@ class Model:
             cur.execute(query, (AsIs(schema_name), AsIs(model_name)))
             conn.commit()
 
+
 # rows = Model.select_query(model_name='Customer', out_put_array=['id', 'name', 'f_name'])
 # for row in rows:
 #     print(row)
@@ -125,3 +126,13 @@ class Model:
 #     'name': 'Maryam'
 # }, condition="where id = 8")
 # Model.delete_query(model_name='Customer',condition='where id=8')
+def get_filter_list(table_name, filter_column):
+    return Model.select_query(model_name=table_name, out_put_array=[filter_column])
+
+
+def set_filter(objects: List[dict], filter_on: str, wanted_result):
+    filtered_objects = []
+    for object in objects:
+        if object[filter_on] == wanted_result:
+            filtered_objects.append(object)
+    return filtered_objects
