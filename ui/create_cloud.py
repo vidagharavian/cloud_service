@@ -134,7 +134,7 @@ class CreateCloudUi(QtWidgets.QMainWindow):
         # if create successfully then go to dashboard
         data = self.os_ver.itemData(self.os_ver.currentIndex())[0]
         create_cloud(int(data), self.user_id, self.cloud_name.toPlainText(), self.cpu.value(), self.disk.value()
-                     , self.ram.value(), self.bandwidth.value())
+                     , self.ram.value(), self.bandwidth.value(),self.core.value())
         from ui.cloudList import CloudlistUi
         self.OtherWindow = CloudlistUi(user_id = self.user_id,is_admin = self.is_admin)
         self.OtherWindow.show()
@@ -157,7 +157,7 @@ class CreateCloudUi(QtWidgets.QMainWindow):
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
-    window = CreateCloudUi()  # Create an instance of our class
+    window = CreateCloudUi(user_id=19)  # Create an instance of our class
     window.show()
     sys.exit(app.exec_())  # Start the application
 

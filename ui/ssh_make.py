@@ -62,17 +62,17 @@ class MakeSSHUi(QtWidgets.QMainWindow):
     def submitButtonPressed(self):
         # first save this ssh for cloud then go to dashboard
         try:
+            cloud_id=self.cloud_list.itemData(self.cloud_list.currentIndex())[0]
             create_ssh(self.get_value(self.ssh_name), self.user_id, self.get_value(self.public_key),
-                       self.cloud_list.itemData(self.cloud_list.currentIndex())[0])
-        except Exception:
-            create_ssh(self.get_value(self.ssh_name), self.user_id, self.get_value(self.public_key),
-                       self.cloud_list.itemData(self.cloud_list.currentIndex())[0])
+                     cloud_id)
+        except TypeError:
+            create_ssh(self.get_value(self.ssh_name), self.user_id, self.get_value(self.public_key))
         from ui.show_ssh import ShowSSHUi
         self.OtherWindow = ShowSSHUi(user_id=self.user_id)
         self.OtherWindow.show()
         self.close()
 
-    def get_value(object):
+    def get_value(self,object):
         if isinstance(object, QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
         if isinstance(object, QtWidgets.QTextEdit):

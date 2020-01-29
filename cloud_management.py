@@ -14,6 +14,7 @@ UserCloud = 'UserCloud'
 SSH = 'SSH'
 OsVersion = 'OsVersion'
 SSHINFO = 'SSHInfo'
+Ticket = 'Ticket'
 
 
 def get_user_clouds(user_id: int) -> dict:
@@ -51,11 +52,11 @@ def take_snapshot(cloud_id: int, name: str):
 def create_ssh(name, user_id, public_key: str, cloud_id: int = None):
     if cloud_id is not None:
         Model.insert_query(model_name=SSH,
-                           input_array={'name': name, 'user_id': user_id, 'key': public_key.decode("utf-8"),
+                           input_array={'name': name, 'user_id': user_id, 'key': public_key,
                                         'cloud_id': cloud_id})
     else:
         Model.insert_query(model_name=SSH,
-                           input_array={'name': name, 'user_id': user_id, 'key': public_key.decode("utf-8")})
+                           input_array={'name': name, 'user_id': user_id, 'key': public_key})
 
 
 def get_user_ssh(user_id):
@@ -113,7 +114,7 @@ def get_wallet(user_id):
             amount = 0
             for cloud in clouds:
                 amount = amount + cloud['cost_per_day']
-            do_transaction(amount, wallet_id)
+            do_transaction(-amount, wallet_id)
             time.sleep(0.25)
             return wallet
         return wallet
@@ -202,3 +203,16 @@ def delete_ssh(ssh_id):
 
 def get_ssh(ssh_id):
     Model.select_query(model_name=SSH, condition=f'where id={ssh_id}')
+
+
+def get_tickets(user_id: int):
+    return Model.select_query(model_name='getticketinfo',
+                              condition=f'where cloud_id in (select id from public."Cloud" where user_id = {user_id})')
+
+
+def create_ticket(title, body, cloud_id):
+    Model.insert_query(model_name=Ticket, input_array={'title': title, 'body': body, 'cloud_id': cloud_id})
+
+
+def delete_ticket(ticket_id):
+    Model.delete_query(model_name=Ticket,condition=f"where id = {ticket_id}")

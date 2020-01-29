@@ -89,7 +89,7 @@ class CloudlistUi(QtWidgets.QMainWindow):
                     headertext = self.cloudlist.horizontalHeaderItem(x).text()
                     if m == cloud_list[headertext]:
                         self.tableWidget.setItem(count, x, QTableWidgetItem(str(value)))
-        count += 1
+            count += 1
     
     def get_value(object):
         if isinstance(object,QtWidgets.QComboBox):
@@ -110,7 +110,7 @@ class CloudlistUi(QtWidgets.QMainWindow):
     
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
-    window = CloudlistUi()  # Create an instance of our class
+    window = CloudlistUi(user_id=19)  # Create an instance of our class
     window.show()
     sys.exit(app.exec_())  # Start the application
 
