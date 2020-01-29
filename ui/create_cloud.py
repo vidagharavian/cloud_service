@@ -114,20 +114,31 @@ class CreateCloudUi(QtWidgets.QMainWindow):
     def updateButtonPressed(self):
         os_version = self.os_ver.itemData(self.os_ver.currentIndex())[0]
         status = self.status.itemData(self.status.currentIndex())[0]
-        update_cloud(int(os_version), self.user_id, self.cloud_name.toPlainText(), self.cpu.value(), self.disk.value()
+        update_cloud(int(os_version), self.cloud_name.toPlainText(), self.cpu.value(), self.disk.value()
                      , self.ram.value(), self.bandwidth.value(),self.core.value(),status,self.cloud_id)
-        from ui.cloudList import CloudlistUi
-        self.OtherWindow = CloudlistUi(user_id=self.user_id,is_admin = self.is_admin)
-        self.OtherWindow.show()
-        self.close()
+        if not self.is_admin:
+            from ui.cloudList import CloudlistUi
+            self.OtherWindow = CloudlistUi(user_id=self.user_id,is_admin = self.is_admin)
+            self.OtherWindow.show()
+            self.close()
+        else:
+            from ui.admin_cloud_list import AdminCloudListUi
+            self.OtherWindow = AdminCloudListUi(user_id=self.user_id)
+            self.OtherWindow.show()
+            self.close()
 
     # todo if press back button back to dashboard.ui or admin_dashboard.ui
     def backButtonPressed(self):
-
-        from ui.cloudList import CloudlistUi
-        self.OtherWindow = CloudlistUi(user_id = self.user_id,is_admin = self.is_admin)
-        self.OtherWindow.show()
-        self.close()
+        if not self.is_admin:
+            from ui.cloudList import CloudlistUi
+            self.OtherWindow = CloudlistUi(user_id = self.user_id,is_admin = self.is_admin)
+            self.OtherWindow.show()
+            self.close()
+        else:
+            from ui.admin_cloud_list import AdminCloudListUi
+            self.OtherWindow = AdminCloudListUi(user_id=self.user_id)
+            self.OtherWindow.show()
+            self.close()
 
     # todo if press create button 1.check wallet>cost 2.add all attributes in clouds of user
     def createButtonPressed(self):
@@ -139,7 +150,7 @@ class CreateCloudUi(QtWidgets.QMainWindow):
         self.OtherWindow = CloudlistUi(user_id = self.user_id,is_admin = self.is_admin)
         self.OtherWindow.show()
         self.close()
-
+    @staticmethod
     def get_value(object):
         if isinstance(object,QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())

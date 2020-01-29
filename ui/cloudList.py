@@ -88,7 +88,10 @@ class CloudlistUi(QtWidgets.QMainWindow):
                 for x in range(0, headercount, 1):
                     headertext = self.cloudlist.horizontalHeaderItem(x).text()
                     if m == cloud_list[headertext]:
-                        self.tableWidget.setItem(count, x, QTableWidgetItem(str(value)))
+                        if m == 'status':
+                            self.tableWidget.setItem(count, x, QTableWidgetItem('Active' if value else 'Inactive'))
+                        else:
+                            self.tableWidget.setItem(count, x, QTableWidgetItem(str(value)))
             count += 1
     
     def get_value(object):

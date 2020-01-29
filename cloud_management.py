@@ -160,12 +160,12 @@ def edit_profile(first_name, last_name, email, national_num, user_id: int, passw
                            condition=f'where id={user_id}')
 
 
-def update_cloud(os_version_id: int, user_id: int, host_name: str, cpu_amount, disk_amount: float, ram_amount: float,
+def update_cloud(os_version_id: int,host_name: str, cpu_amount, disk_amount: float, ram_amount: float,
                  band_width: float, core_amount: int, status: int, cloud_id):
     cost_per_day = calculate_price(core=core_amount, cpu=cpu_amount, storage=disk_amount, bandwidth=band_width,
                                    ram=ram_amount)
     Model.update_query(model_name=Cloud,
-                       input_array={'user_id': user_id, 'host_name': host_name, 'cpu_amount': cpu_amount,
+                       input_array={'host_name': host_name, 'cpu_amount': cpu_amount,
                                     'disk_amount': disk_amount, 'ram_amount': ram_amount, 'band_width': band_width,
                                     'os_version_id': os_version_id, 'core_amount': core_amount,
                                     'cost_per_day': cost_per_day, 'status': status}, condition=f'where id = {cloud_id}')
@@ -206,16 +206,20 @@ def get_ssh(ssh_id):
     Model.select_query(model_name=SSH, condition=f'where id={ssh_id}')
 
 
-def get_tickets(user_id: int=None):
+def get_tickets(user_id: int = None):
     if user_id is not None:
         return Model.select_query(model_name='getticketinfo',
-                              condition=f'where cloud_id in (select id from public."Cloud" where user_id = {user_id})')
+                                  condition=f'where cloud_id in (select id from public."Cloud" where user_id = {user_id})')
     else:
         return Model.select_query(model_name='getticketinfo')
 
 
 def create_ticket(title, body, cloud_id):
     Model.insert_query(model_name=Ticket, input_array={'title': title, 'body': body, 'cloud_id': cloud_id})
+
+
+def get_ticket(ticket_id):
+    return Model.select_query(model_name='getticketinfo', condition=f'where ticket_id = {ticket_id}')
 
 
 def delete_ticket(ticket_id):

@@ -1,6 +1,4 @@
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtGui import QIcon
 import sys
 
 from PyQt5.QtWidgets import QTableWidgetItem
@@ -9,13 +7,13 @@ from admin import get_clouds
 from cloud_management import Cloud
 from models import Model
 
-cloud_list = {'Cloud id': 'cloud_id', 'Cloud name': 'host_name', 'IP address': 'first_name', 'Cloud status': 'status',
+cloud_list = {'Cloud id': 'cloud_id', 'Cloud name': 'host_name', 'Firstname': 'first_name', 'Cloud status': 'status',
               'Date': 'date_created', 'User id': 'user_id', 'CPU': 'cpu_amount', 'CORE': 'core_amount',
-              'DISK': 'disk_amount', 'RAM': 'ram_amount', 'cost per day': 'cost_per_day','New Column':'last_name'}
+              'DISK': 'disk_amount', 'RAM': 'ram_amount', 'cost per day': 'cost_per_day', 'Lastname': 'last_name'}
 
 
 class AdminCloudListUi(QtWidgets.QMainWindow):
-    def __init__(self , user_id:int=None):
+    def __init__(self, user_id: int = None):
         super(AdminCloudListUi, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('admin_cloud_list.ui', self)  # Load the .ui file
         self.user_id = user_id
@@ -30,9 +28,10 @@ class AdminCloudListUi(QtWidgets.QMainWindow):
         self.deleteCloud.clicked.connect(self.deleteButtonPressed)
 
         self.cloudlist = self.findChild(QtWidgets.QTableWidget, 'tableWidget')
-        self.cloudlist.setColumnHidden(0, True)# column 0 is cloud id
+        self.cloudlist.setColumnHidden(0, True)  # column 0 is cloud id
         self.create_table()
-#todo: no need for user_id
+
+    # todo: no need for user_id
     def create_table(self):
         clouds = get_clouds()
         self.cloudlist.setRowCount(len(clouds))
@@ -44,16 +43,19 @@ class AdminCloudListUi(QtWidgets.QMainWindow):
                 for x in range(0, headercount, 1):
                     headertext = self.cloudlist.horizontalHeaderItem(x).text()
                     if m == cloud_list[headertext]:
-                        self.tableWidget.setItem(count, x, QTableWidgetItem(str(value)))
-            count+=1
+                        if m == 'status':
+                            self.tableWidget.setItem(count, x, QTableWidgetItem('Active' if value else 'Inactive'))
+                        else:
+                            self.tableWidget.setItem(count, x, QTableWidgetItem(str(value)))
+            count += 1
 
     # todo if press edit button go to create_cloud.ui
     def editButtonPressed(self):
         # pass ids to the other page
         from ui.create_cloud import CreateCloudUi
         row = self.cloudlist.currentItem().row()
-        self.OtherWindow = CreateCloudUi(cloud_id=self.cloudlist.item(row, 1).text(),user_id = self.user_id
-                                        ,is_admin = True)
+        self.OtherWindow = CreateCloudUi(cloud_id=self.cloudlist.item(row, 0).text(), user_id=self.user_id
+                                         , is_admin=True)
         self.OtherWindow.show()
         self.close()
 
@@ -71,28 +73,28 @@ class AdminCloudListUi(QtWidgets.QMainWindow):
         self.create_table()
 
     def get_value(object):
-        if isinstance(object,QtWidgets.QComboBox):
+        if isinstance(object, QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
-        if isinstance( object,QtWidgets.QTextEdit):
+        if isinstance(object, QtWidgets.QTextEdit):
             value = object.toPlainText()
-        if isinstance(object,QtWidgets.QTextBrowser):
+        if isinstance(object, QtWidgets.QTextBrowser):
             value = object.toPlainText()
-        if isinstance(object,QtWidgets.QLabel):
+        if isinstance(object, QtWidgets.QLabel):
             value = object.text()
-        if isinstance(object,QtWidgets.QSpinBox):
+        if isinstance(object, QtWidgets.QSpinBox):
             value = object.value()
-        if isinstance (object,QtWidgets.QDoubleSpinBox):
+        if isinstance(object, QtWidgets.QDoubleSpinBox):
             value = object.value()
         return value
 
+
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Create an instance of QtWidgets.QApplication
-    window = AdminCloudListUi()  # Create an instance of our class
+    window = AdminCloudListUi(user_id=1)  # Create an instance of our class
     window.show()
     sys.exit(app.exec_())  # Start the application
 
 
 if __name__ == "__main__":
     main()
-#todo maryam faqat cloud_name va cloud_id,ip,new column va cost per day ro negah dar
-#todo maryam ip address mishe firstname va new column ham mishe last name havaset bashe too dict ham taqiresh bedi ezafeharam pak koni
+
