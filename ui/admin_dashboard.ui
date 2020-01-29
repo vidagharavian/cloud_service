@@ -173,32 +173,9 @@ color: rgb(130, 130, 130);</string>
      </item>
      <item>
       <widget class="QPushButton" name="bt_cloud">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="sizeIncrement">
-        <size>
-         <width>10</width>
-         <height>10</height>
-        </size>
-       </property>
-       <property name="baseSize">
-        <size>
-         <width>100</width>
-         <height>100</height>
-        </size>
-       </property>
        <property name="font">
         <font>
          <pointsize>15</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -208,15 +185,6 @@ background-color: rgb(254, 235, 255);</string>
        </property>
        <property name="text">
         <string>Clouds</string>
-       </property>
-       <property name="autoDefault">
-        <bool>false</bool>
-       </property>
-       <property name="default">
-        <bool>false</bool>
-       </property>
-       <property name="flat">
-        <bool>false</bool>
        </property>
       </widget>
      </item>

@@ -175,11 +175,6 @@ QPushButton:hover
     </column>
     <column>
      <property name="text">
-      <string>Password</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
       <string>National Number</string>
      </property>
     </column>
