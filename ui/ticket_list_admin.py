@@ -58,7 +58,7 @@ class AdminTicketListUi(QtWidgets.QMainWindow):
     # todo if press newTicket button go to response_ticket.ui
     def responseButtonPressed(self):
         pass
-
+    @staticmethod
     def get_value(object):
         if isinstance(object, QtWidgets.QComboBox):
             value = object.itemData(object.currentIndex())
