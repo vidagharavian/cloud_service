@@ -28,7 +28,7 @@ class ShowSnapshotUi(QtWidgets.QMainWindow):
         self.delete.clicked.connect(self.deleteButtonPressed)
 
         self.snapshot_table = self.findChild(QtWidgets.QTableWidget, 'tableWidget')
-        self.cloudlist.setColumnHidden(7, True)# column 7 is snapshot_id
+        self.snapshot_table.setColumnHidden(7, True)# column 7 is snapshot_id
 
         self.create_table()
 

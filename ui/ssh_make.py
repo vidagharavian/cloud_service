@@ -24,22 +24,14 @@ class MakeSSHUi(QtWidgets.QMainWindow):
         self.back.clicked.connect(self.backButtonPressed)
         self.submit = self.findChild(QtWidgets.QPushButton, 'submit')
         self.submit.clicked.connect(self.submitButtonPressed)
-        self.edit = self.findChild(QtWidgets.QPushButton, 'edit') 
-        self.edit.clicked.connect(self.editButtonPressed)
 
-        if ssh_id is not None:
-            self.private_key.setVisible(False)
-            self.private_label.setVisible(False)
-            self.label.setVisible(False)
-            self.edit.setVisible(False)
-            self.submit.setVisible(True)
 
-        else:
-            self.private_key.setVisible(True)
-            self.private_label.setVisible(True)
-            self.label.setVisible(True)
-            self.edit.setVisible(True)
-            self.submit.setVisible(False)
+        self.private_key.setVisible(True)
+        self.private_label.setVisible(True)
+        self.label.setVisible(False)
+
+        self.submit.setVisible(True)
+
 
         self.set_defaults()
 
@@ -85,13 +77,6 @@ class MakeSSHUi(QtWidgets.QMainWindow):
                        self.cloud_list.itemData(self.cloud_list.currentIndex())[0])
         except Exception:
             create_ssh(self.get_value(self.ssh_name), self.user_id, self.get_value(self.public_key))
-        from ui.show_ssh import ShowSSHUi
-        self.OtherWindow = ShowSSHUi(user_id=self.user_id)
-        self.OtherWindow.show()
-        self.close()
-
-    def editButtonPressed(self):
-        #todo edit ssh
         from ui.show_ssh import ShowSSHUi
         self.OtherWindow = ShowSSHUi(user_id=self.user_id)
         self.OtherWindow.show()

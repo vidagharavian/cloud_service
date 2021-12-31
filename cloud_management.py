@@ -160,7 +160,7 @@ def edit_profile(first_name, last_name, email, national_num, user_id: int, passw
                            condition=f'where id={user_id}')
 
 
-def update_cloud(os_version_id: int,host_name: str, cpu_amount, disk_amount: float, ram_amount: float,
+def update_cloud(os_version_id: int, host_name: str, cpu_amount, disk_amount: float, ram_amount: float,
                  band_width: float, core_amount: int, status: int, cloud_id):
     cost_per_day = calculate_price(core=core_amount, cpu=cpu_amount, storage=disk_amount, bandwidth=band_width,
                                    ram=ram_amount)
@@ -229,3 +229,7 @@ def delete_ticket(ticket_id):
 def delete_user(user_id):
     Model.delete_query(model_name=UserTable, condition=f"where id = {user_id}")
 
+
+def get_versions(os_id):
+    return Model.select_query(model_name='OsOsVersion', condition=f'where os_id={os_id}',
+                              out_put_array=['os_id', 'os_version_id', 'number', 'name'], is_view=True)
